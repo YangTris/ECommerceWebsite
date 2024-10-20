@@ -1,0 +1,188 @@
+﻿@model ECommerceWebsite.Models.Product
+
+@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Product Images -->
+                
+
+                <!-- Main Product Image and Info -->
+                <div class="col-md-7">
+                    <!-- Main product image -->
+                    <div class="product-main-image mb-3">
+                        <img src="~/Assets/Banner.jpg" class="img-fluid rounded shadow" alt="Main Product Image">
+                    </div>
+                </div>
+
+                <!-- Product Details and Actions -->
+                <div class="col-md-4 ms-4">
+                    <!-- Product Info -->
+                    <h1 class="mb-3 fw-bold">HeadPhone AL8</h1>
+                    <p class="lead text-muted mb-4">LTRX-8000s</p>
+                    <h2 class="h4 mb-3">2,649,000₫</h2>
+
+                    <!-- Product Colors -->
+                    <div class="mb-4">
+                        <span class="me-2">Color:</span>
+                        <div class="btn-group" role="group" aria-label="Color selection">
+                            <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
+                            <label class="btn btn-outline-dark" for="black">Black</label>
+                            <input type="radio" class="btn-check" name="color" id="white" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="white">White</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="quantity" class="form-label">Quantity:</label>
+                        <input type="number" class="form-control w-25" id="quantity" value="1" min="1">
+                    </div>
+
+                    <!-- Add to Bag and Favorite Buttons -->
+                    <div class="mb-4">
+                        <button class="btn btn-dark btn-lg w-100 mb-2">
+                            Add to Bag
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+            <!-- Product Description -->
+            <div class="row mt-5">
+                <div class="col-12">
+                <h3 class="fw-bold text-center">Product Description</h3>
+                    <p class="text-muted">The Beats Pill is a portable Bluetooth speaker that delivers high-quality sound in a compact, pill-shaped design. Perfect for on-the-go music lovers, it offers crisp audio, deep bass, and up to 12 hours of battery life. With its built-in microphone, you can even take calls hands-free.</p>
+                </div>
+            </div>
+        <hr />
+
+        <div>
+            <section id="new-products" class="container">
+                <h2 class="section-title">PRODUCTS</h2>
+                <div class="product-row">
+                    <!-- Repeat this card structure for each product -->
+                    <div class="product-card">
+                        <div class="card-image">
+                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="product-title">Beats Pill</h3>
+                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
+                            <p class="product-description">dsdasdasd asddasd sadsa</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="product-price">$299.00</span>
+                            <button class="btn-view-product">View Product</button>
+                        </div>
+                    </div>
+                    <!-- Add more product cards here -->
+                    <div class="product-card">
+                        <div class="card-image">
+                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="product-title">Beats Pill</h3>
+                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
+                            <p class="product-description">dsdasdasd asddasd sadsa</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="product-price">$299.00</span>
+                            <button class="btn-view-product">View Product</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image">
+                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="product-title">Beats Pill</h3>
+                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
+                            <p class="product-description">dsdasdasd asddasd sadsa</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="product-price">$299.00</span>
+                            <button class="btn-view-product">View Product</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="card-image">
+                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="product-title">Beats Pill</h3>
+                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
+                            <p class="product-description">dsdasdasd asddasd sadsa</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="product-price">$299.00</span>
+                            <button class="btn-view-product">View Product</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- <div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.productId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.productId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.category)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.imageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.imageUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.timestamp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.timestamp)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+!-->
