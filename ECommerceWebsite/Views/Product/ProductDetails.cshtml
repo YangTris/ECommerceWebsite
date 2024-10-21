@@ -5,156 +5,181 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="container mt-5">
-            <div class="row">
-                <!-- Product Images -->
-                
-
-                <!-- Main Product Image and Info -->
-                <div class="col-md-7">
-                    <!-- Main product image -->
-                    <div class="product-main-image mb-3">
-                        <img src="~/Assets/Banner.jpg" class="img-fluid rounded shadow" alt="Main Product Image">
-                    </div>
-                </div>
-
-                <!-- Product Details and Actions -->
-                <div class="col-md-4 ms-4">
-                    <!-- Product Info -->
-                    <h1 class="mb-3 fw-bold">HeadPhone AL8</h1>
-                    <p class="lead text-muted mb-4">LTRX-8000s</p>
-                    <h2 class="h4 mb-3">2,649,000₫</h2>
-
-                    <!-- Product Colors -->
-                    <div class="mb-4">
-                        <span class="me-2">Color:</span>
-                        <div class="btn-group" role="group" aria-label="Color selection">
-                            <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
-                            <label class="btn btn-outline-dark" for="black">Black</label>
-                            <input type="radio" class="btn-check" name="color" id="white" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="white">White</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="quantity" class="form-label">Quantity:</label>
-                        <input type="number" class="form-control w-25" id="quantity" value="1" min="1">
-                    </div>
-
-                    <!-- Add to Bag and Favorite Buttons -->
-                    <div class="mb-4">
-                        <button class="btn btn-dark btn-lg w-100 mb-2">
-                            Add to Bag
-                        </button>
-                    </div>
-                </div>
-            </div>
+<div id="product-details-body">
+    <!--PRODUCT DETAILS-->
+    <div class="product-details-container">
+        <div class="product-image">
+            <img src="~/Assets/topwatch.png" alt="Product Image">
         </div>
-        <hr/>
-            <!-- Product Description -->
-            <div class="row mt-5">
-                <div class="col-12">
-                <h3 class="fw-bold text-center">Product Description</h3>
-                    <p class="text-muted">The Beats Pill is a portable Bluetooth speaker that delivers high-quality sound in a compact, pill-shaped design. Perfect for on-the-go music lovers, it offers crisp audio, deep bass, and up to 12 hours of battery life. With its built-in microphone, you can even take calls hands-free.</p>
-                </div>
+        <div class="product-info">
+            <h1 class="product-title">Product Name</h1>
+            <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non.</p>
+            <div class="product-price">500.000đ</div>
+            <div class="product-quantity">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1">
             </div>
-        <hr />
-
-        <div>
-            <section id="new-products" class="container">
-                <h2 class="section-title">PRODUCTS</h2>
-                <div class="product-row">
-                    <!-- Repeat this card structure for each product -->
-                    <div class="product-card">
-                        <div class="card-image">
-                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="product-title">Beats Pill</h3>
-                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
-                            <p class="product-description">dsdasdasd asddasd sadsa</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="product-price">$299.00</span>
-                            <button class="btn-view-product">View Product</button>
-                        </div>
-                    </div>
-                    <!-- Add more product cards here -->
-                    <div class="product-card">
-                        <div class="card-image">
-                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="product-title">Beats Pill</h3>
-                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
-                            <p class="product-description">dsdasdasd asddasd sadsa</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="product-price">$299.00</span>
-                            <button class="btn-view-product">View Product</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="card-image">
-                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="product-title">Beats Pill</h3>
-                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
-                            <p class="product-description">dsdasdasd asddasd sadsa</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="product-price">$299.00</span>
-                            <button class="btn-view-product">View Product</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="card-image">
-                            <img src="~/Assets/Banner.jpg" alt="Beats speakers">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="product-title">Beats Pill</h3>
-                            <p class="product-subtitle">Black Beats Pill + Portable Speaker</p>
-                            <p class="product-description">dsdasdasd asddasd sadsa</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="product-price">$299.00</span>
-                            <button class="btn-view-product">View Product</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
+            <button class="blue-button">Add to cart</button>
         </div>
     </div>
+    <!--END PRODUCT DETAILS-->
+    <!--PRODUCT DETAILS SECTION-->
+    <div class="product-section" id="product-section-all">
+        <div class="product-section-top-container">
+            <div class="section-category-container">
+                <div class="section-category-type">
+                    <span class="blue-line"></span>
+                    <span class="section-category-text">All Electronics</span>
+                </div>
+                <h1>Explore More</h1>
+            </div>
+        </div>
+    </div>
+    <!--END PRODUCT DETAILS SECTION-->
+    <!-- PRODUCT SLIDER SECTION -->
+    <div class="product-link">
+        <a id="allproduct-link" href="../Product/AllProducts">View All</a>
+    </div>
+
+    <div class="product-slider-container">
+        <div class="product-slider">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="~/Assets/ipad.png" alt="Product 1">
+                </div>
+                <div class="product-card-title">Smart Watch Pro</div>
+                <div class="product-purchase">
+                    <span class="product-price">450.000</span>
+                    <button class="blue-button">
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="/api/placeholder/200/200" alt="Product 2">
+                </div>
+                <div class="product-card-title">Fitness Tracker</div>
+                <div class="product-card-price">350.000đ</div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="/api/placeholder/200/200" alt="Product 3">
+                </div>
+                <div class="product-card-title">Sport Watch</div>
+                <div class="product-card-price">400.000đ</div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="/api/placeholder/200/200" alt="Product 4">
+                </div>
+                <div class="product-card-title">Classic Watch</div>
+                <div class="product-card-price">550.000đ</div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="/api/placeholder/200/200" alt="Product 4">
+                </div>
+                <div class="product-card-title">Classic Watch</div>
+                <div class="product-card-price">550.000đ</div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="/api/placeholder/200/200" alt="Product 4">
+                </div>
+                <div class="product-card-title">Classic Watch</div>
+                <div class="product-card-price">550.000đ</div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="/api/placeholder/200/200" alt="Product 4">
+                </div>
+                <div class="product-card-title">Classic Watch</div>
+                <div class="product-card-price">550.000đ</div>
+            </div>
+        </div>
+
+        <!-- SLIDER NAVIGATION BUTTON -->
+        <div class="slider-buttons">
+            <button class="slider-button" onclick="slideLeft()">←</button>
+            <button class="slider-button" onclick="slideRight()">→</button>
+        </div>
+    </div>
+    <!-- END PRODUCT SLIDER SECTION -->
 </div>
 
+<script>
+    const slider = document.querySelector('.product-slider');
+    const cardWidth = 300;
 
-<!-- <div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.description)
-        </dd>
+    function slideLeft() {
+        slider.scrollBy({
+            left: -cardWidth,
+            behavior: 'smooth'
+        });
+    }
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.price)
+    function slideRight() {
+        slider.scrollBy({
+            left: cardWidth,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
+
+
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.imageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.imageUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.timestamp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.timestamp)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+!-->
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.imageUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.imageUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.timestamp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.timestamp)
         </dd>
     </dl>
 </div>

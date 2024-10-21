@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="~/ECommerceWebsite.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-   
-        
+
+
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <nav>
         <div id="navbar">
             <div id="navbar-logo">
-                <img src="~/Assets/elife_logo.png" alt="eLite"/>
+                <img src="~/Assets/elife_logo.png" alt="eLite" />
             </div>
             <div id="navbar-links">
                 <ul>
@@ -43,12 +43,12 @@
                         </svg>
                         <span>0</span>
                     </a>
-                    <a id="wishlist-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
-                        </svg>
-                        <span>0</span>
-                    </a>
+                    @* <a id="wishlist-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                    </svg>
+                    <span>0</span>
+                    </a> *@
                 </div>
             </div>
         </div>
@@ -91,45 +91,6 @@
     </div>
     <!--End Navbar -->
 
-    @* <!--Navbar-->
-    <nav class="navbar navbar-expand-lg w-100">
-        <div class="container">
-            <a class="navbar-brand me-auto" href="#">LOGO</a>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Logo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" aria-current="page" href="../Home/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="../Product/AllProducts">Product</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2" href="#">About</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <a href="#" class="login-button">Login</a>
-            <!-- Nút giỏ hàng -->
-            <a href="#" class="cart-button ms-3 fw-bold" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
-                <i class="bi bi-cart"></i>
-            </a>
-            <button class="navbar-toggler pe-0 ms-3 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav> *@
-
-    
-
     <div class="container">
         <main role="main">
             @RenderBody()
@@ -138,7 +99,7 @@
 
     <footer>
         <div id="footer-top">
-            <img src="~/Assets/elife_logo.png" alt="eLite" width="220px" height="110px"/>
+            <img src="~/Assets/elife_logo.png" alt="eLite" width="220px" height="110px" />
             <div id="footer-socials-wrapper">
                 <div class="footer-social">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
@@ -181,7 +142,39 @@
         </div>
     </footer>
 
+    <script>
+        //ADDING ITEMS
+        // let wishListCount = document.querySelector('#wishlist-link span');
+        // let heartButton = document.querySelectorAll('.heart-button');
 
+        // heartButton.forEach((button) => {
+        //     button.addEventListener('click', () => {
+        //         button.classList.toggle('active');
+        //         wishListCount.innerHTML = document.querySelectorAll('.heart-button.active').length;
+        //     })
+        // })
+
+        //ADDING CART
+        let cartCount = document.querySelector('#cart-link span');
+        let cartButtons = document.querySelectorAll('.blue-button');
+
+        cartButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+
+                let buttonString = button.innerHTML.trim();
+
+                if (buttonString === "Add to cart") {
+                    button.innerHTML = "Remove"
+                } else if (buttonString === "Remove") {
+                    button.innerHTML = "Add to cart"
+                } else {
+                    console.log("Error: Adding items to cart failed.", buttonString);
+                }
+                cartCount.innerHTML = document.querySelectorAll('.blue-button.active').length;
+            })
+        })
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
