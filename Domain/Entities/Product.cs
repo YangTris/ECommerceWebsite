@@ -12,7 +12,7 @@ namespace Domain.Entities
 	public class Product
 	{
 		[BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
-		public string productId { get; set; }
+		public ObjectId productId { get; set; }
 		[BsonElement("name"), BsonRepresentation(BsonType.String)]
 		public string name { get; set; }
 		[BsonElement("description"), BsonRepresentation(BsonType.String)]

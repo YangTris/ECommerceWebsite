@@ -1,24 +1,40 @@
 ﻿using ECommerceWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
+using Services.Abstractions;
+using Shared;
+using System.Collections;
 
 namespace ECommerceWebsite.Controllers
 {
 	public class ProductController : Controller
 	{
-		private List<Product> products = new();
+		private readonly IServiceManager _serviceManager;
+		public ProductController(IServiceManager serviceManager)
+		{
+			_serviceManager = serviceManager;
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> AllProducts()
+		{
+			//var productDTOs = await _serviceManager.ProductService.GetAllAsync();
+			/*List<AllProductsViewModel> allProducts = new List<AllProductsViewModel>();
+			foreach (var p in productDTOs.ToList())
+			{
+				allProducts.Add(new AllProductsViewModel
+				{
+					name = p.name,
+					price = p.price,
+					description = p.description
+				});
+			}*/
+
+			return View("AllProducts");
+		}
+
 		public IActionResult ProductDetails()
 		{
 			return View();
 		}
-
-		public IActionResult AllProducts()
-		{
-			for (int i = 0; i < 10; i++)
-			{
-				products.Add(new Product("123"+i, "product"+i, i.ToString(), i.ToString(), i*i*10000, i.ToString(), DateTime.Now));
-			}
-			return View("AllProducts",products);
-		}
-
 	}
 }

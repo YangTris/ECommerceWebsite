@@ -17,7 +17,7 @@
 	public class CartItem
 	{
 		public string cartId { get; set; }
-		public Product product { get; set; }
+		public AllProductsViewModel product { get; set; }
 		public int quantity { get; set; }
 		public decimal price { get; set; }
 		public CartItem()

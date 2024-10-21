@@ -1,4 +1,4 @@
-﻿@model ECommerceWebsite.Models.Product
+﻿@model ECommerceWebsite.Models.AllProductsViewModel
 
 @{
     ViewData["Title"] = "ProductDetails";
@@ -138,12 +138,6 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.productId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.productId)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.name)
         </dt>
         <dd class = "col-sm-10">
@@ -155,29 +149,12 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.category)
-        </dd>
+
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.price)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.imageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.imageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.timestamp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.timestamp)
         </dd>
     </dl>
 </div>

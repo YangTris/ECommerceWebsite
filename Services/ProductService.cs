@@ -2,6 +2,7 @@
 using Domain.Exceptions;
 using Domain.Repositories;
 using Mapster;
+using MongoDB.Bson;
 using Services.Abstractions;
 using Shared;
 
@@ -19,7 +20,7 @@ namespace Services
 			var products = await _repositoryManager.ProductRepository.GetAllAsync(cancellationToken);
 			return products.Adapt<IEnumerable<ProductDTO>>();
 		}
-		public async Task<ProductDTO> GetByIdAsync(string productId, CancellationToken cancellationToken = default)
+		public async Task<ProductDTO> GetByIdAsync(ObjectId productId, CancellationToken cancellationToken = default)
 		{
 			var productEntity = await _repositoryManager.ProductRepository.GetByIdAsync(productId, cancellationToken);
 			if (productEntity == null)
@@ -35,7 +36,7 @@ namespace Services
 			await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
 			return productEntity.Adapt<ProductDTO>();
 		}
-		public async Task UpdateAsync(string productId, ProductDTO product, CancellationToken cancellationToken = default)
+		public async Task UpdateAsync(ObjectId productId, ProductDTO product, CancellationToken cancellationToken = default)
 		{
 			var productEntity = await _repositoryManager.ProductRepository.GetByIdAsync(productId, cancellationToken);
 			if (productEntity == null)
@@ -51,7 +52,7 @@ namespace Services
 
 			await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);
 		}
-		public async Task DeleteAsync(string productId, CancellationToken cancellationToken = default)
+		public async Task DeleteAsync(ObjectId productId, CancellationToken cancellationToken = default)
 		{
 			var productEntity = await _repositoryManager.ProductRepository.GetByIdAsync(productId, cancellationToken);
 			if (productEntity == null)
