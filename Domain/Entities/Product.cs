@@ -8,22 +8,27 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-	[Serializable, BsonIgnoreExtraElements]
 	public class Product
 	{
-		[BsonId, BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
 		public ObjectId productId { get; set; }
-		[BsonElement("name"), BsonRepresentation(BsonType.String)]
 		public string name { get; set; }
-		[BsonElement("description"), BsonRepresentation(BsonType.String)]
 		public string description { get; set; }
-		[BsonElement("category"), BsonRepresentation(BsonType.String)]
-		public string category { get; set; }
-		[BsonElement("price"), BsonRepresentation(BsonType.Decimal128)]
+		public string category { get; set; } 
 		public decimal price { get; set; }
-		[BsonElement("imageUrl"), BsonRepresentation(BsonType.String)]
 		public string imageUrl { get; set; }
-		[BsonElement("timestamp"), BsonRepresentation(BsonType.DateTime)]
 		public DateTime timestamp { get; set; }
+
+		public Product() { }
+
+		public Product(ObjectId productId, string name, string description, string category, decimal price, string imageUrl, DateTime timestamp)
+		{
+			this.productId = productId;
+			this.name = name;
+			this.description = description;
+			this.category = category;
+			this.price = price;
+			this.imageUrl = imageUrl;
+			this.timestamp = timestamp;
+		}
 	}
 }

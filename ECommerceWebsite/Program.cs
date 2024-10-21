@@ -17,7 +17,7 @@ var settings = MongoClientSettings.FromConnectionString(builder.Configuration.Ge
 settings.ServerApi = new ServerApi(ServerApiVersion.V1);
 var client = new MongoClient(settings);
 
-builder.Services.AddDbContext<RepositoryDbContext>(options => options.UseMongoDB(client, "ECommerceDatabase"));
+builder.Services.AddDbContext<RepositoryDbContext>(o => o.UseMongoDB(client,"ECommerceDatabase"));
 
 
 var app = builder.Build();

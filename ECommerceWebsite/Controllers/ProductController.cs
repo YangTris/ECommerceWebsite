@@ -1,12 +1,14 @@
 ﻿using ECommerceWebsite.Models;
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Services.Abstractions;
 using Shared;
 using System.Collections;
 
 namespace ECommerceWebsite.Controllers
 {
-	public class ProductController : Controller
+    public class ProductController : Controller
 	{
 		private readonly IServiceManager _serviceManager;
 		public ProductController(IServiceManager serviceManager)
@@ -15,26 +17,29 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> AllProducts()
+		public async Task<IActionResult> ProductList()
 		{
-			//var productDTOs = await _serviceManager.ProductService.GetAllAsync();
-			/*List<AllProductsViewModel> allProducts = new List<AllProductsViewModel>();
-			foreach (var p in productDTOs.ToList())
-			{
-				allProducts.Add(new AllProductsViewModel
-				{
-					name = p.name,
-					price = p.price,
-					description = p.description
-				});
-			}*/
-
-			return View("AllProducts");
+			var productList = await _serviceManager.ProductService.GetAllAsync();
+			IEnumerable<ProductViewModel> allProducts = productList.Adapt<IEnumerable<ProductViewModel>>();
+			return View("ProductList", allProducts);
 		}
 
-		public IActionResult ProductDetails()
+		[HttpGet]
+		public async Task<IActionResult> ProductDetails(ObjectId productId)
 		{
-			return View();
+			var product = await _serviceManager.ProductService.GetByIdAsync(productId);
+			return View("ProductDetails",product.Adapt<ProductViewModel>());
+		}
+		[HttpGet]
+		public IActionResult ProductAdd()
+		{
+			return View("ProductAdd");
+		}
+
+		[HttpPost]
+		public IActionResult ProductAdd(ProductViewModel product)
+		{
+			return View("ProductDetails");
 		}
 	}
 }
