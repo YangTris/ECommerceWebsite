@@ -2,7 +2,7 @@
 {
 	public class ProductDTO
 	{
-		public string productId { get; set; }
+		public string? productId { get; set; }
 		public string name { get; set; }
 		public string description { get; set; }
 		public string category { get; set; }
@@ -12,9 +12,8 @@
 
 		public ProductDTO() { }
 
-		public ProductDTO(string productId, string name, string description, string category, decimal price, string imageUrl, DateTime timestamp)
+		public ProductDTO(string name, string description, string category, decimal price, string imageUrl, DateTime timestamp)
 		{
-			this.productId = productId;
 			this.name = name;
 			this.description = description;
 			this.category = category;

@@ -998,6 +998,92 @@ button.add-to-cart{
     transition: background-color 0.3s ease-in-out;
 }
 
+/*ADD PRODUCT*/
+.product-add-body {
+    max-width: 1200px;
+    padding-top: 125px;
+    margin-left: 60px;
+    padding-bottom: 50px;
+    justify-content: center;
+    position: relative;
+}
+.product-add-container {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.product-add-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    border-color: #3D3D29;
+    outline: none;
+}
+
+.btn-submit {
+    background-color: #3b71dc;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-submit:hover {
+     background-color: rgb(102,136,240);
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #f0f0f0; 
+    color: #333; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none; 
+    text-align: center;
+}
+
+.btn-back:hover {
+    background-color: #e0e0e0; 
+}
+
+
+
+
+
+
 /* FOOTER */
 footer {
     background-color: #d9e5f4; 

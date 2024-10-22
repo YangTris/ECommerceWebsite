@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductViewModel>
+﻿@model AllProductsViewModel
 
 @{
 	ViewData["Title"] = "AllProducts";
@@ -42,7 +42,7 @@
 						All
 					</span>
 					<span class="product-category-number">
-						60 items
+						@Html.DisplayFor(model => model.countProduct) Items
 					</span>
 				</div>
 			</div>
@@ -127,7 +127,7 @@
 
 		<div class="product-cards-container">
 			<ul>
-				@foreach (var item in Model)
+				@foreach (var item in Model.products)
 				{
 					<li class="product-card">
 						<a asp-action="ProductDetails" asp-route-productId="@item.productId" class="product-link">
@@ -140,7 +140,7 @@
 							<div class="product-text-container">
 								<h1>@Html.DisplayFor(modelItem => item.name)</h1>
 								<div class="product-purchase">
-									<span class="product-price">@Html.DisplayFor(modelItem => item.price)</span>
+									<span class="product-price">@Html.DisplayFor(modelItem => item.price)$</span>
 									<button class="blue-button">
 										Add to cart
 									</button>
