@@ -33,41 +33,6 @@ namespace ECommerceWebsite.Controllers
 			var product = await _serviceManager.ProductService.GetByIdAsync(productId);
 			return View("ProductDetails", product.Adapt<ProductViewModel>());
 		}
-		[HttpGet]
-		public IActionResult ProductAdd()
-		{
-			Console.WriteLine("get productAdd");
-			return View("ProductAdd");
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> ProductAdd(ProductViewModel product)
-		{
-			var entity = new ProductDTO(
-				product.name,
-				product.description,
-				product.category,
-				product.price,
-				"product.imageUrl",
-				product.timestamp
-			);
-			Console.WriteLine(product.imageUrl.ToString());
-			//await _serviceManager.ProductService.CreateAsync(entity);
-			return View("ProductDetails", product.Adapt<ProductViewModel>());
-		}
-
-		[HttpPost]
-		public IActionResult ProductEdit()
-		{
-			Console.WriteLine("get productAdd");
-			return View("ProductAdd");
-		}
-
-		[HttpPost]
-		public IActionResult ProductDelete()
-		{
-			Console.WriteLine("get productAdd");
-			return View("ProductAdd");
-		}
+		
 	}
 }

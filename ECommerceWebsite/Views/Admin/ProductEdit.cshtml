@@ -1,0 +1,48 @@
+﻿@model ECommerceWebsite.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "ProductEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="product-edit-body">
+    <div class="product-edit-container">
+        <h2 class="form-title">Edit Product</h2>
+        <form class="product-edit-form" asp-action="ProductEdit" method="post">
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" class="form-control" required>
+                    <option value="" disabled selected>Selected..</option>
+                    <option value="smartwatch">SmartWatch</option>
+                    <option value="phone">Phone</option>
+                    <option value="laptop">Laptop</option> 
+                    <option value="headphones">Headphones</option>
+                    <option value="tablet">Tablet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn-submit">Edit Product</button>
+            <a href="../Product/ProductList" class="btn-back">Back to List</a>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
