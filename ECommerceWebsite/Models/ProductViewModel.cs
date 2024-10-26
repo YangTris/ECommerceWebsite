@@ -7,11 +7,11 @@
 		public string description { get; set; }
 		public string category { get; set; }
 		public decimal price { get; set; }
-		public System.Drawing.Image imageUrl { get; set; }
+		public string imageUrl { get; set; }
 		public DateTime timestamp { get; set; }
 		public ProductViewModel() { }
 
-		public ProductViewModel(string productId, string name, string description, string category, decimal price, System.Drawing.Image imageUrl, DateTime timestamp)
+		public ProductViewModel(string productId, string name, string description, string category, decimal price, string imageUrl, DateTime timestamp)
 		{
 			this.productId = productId;
 			this.name = name;
