@@ -46,9 +46,11 @@ namespace ECommerceWebsite.Controllers
 				};
 
 				IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
-				await userManager.AddToRoleAsync(appUser, "Customer");
 				if (result.Succeeded)
+				{
+					await userManager.AddToRoleAsync(appUser, "Customer");
 					ViewBag.Message = "User Created Successfully";
+				}
 				else
 					Errors(result);
 
