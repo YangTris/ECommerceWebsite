@@ -25,6 +25,6 @@ namespace Persistence
 		{
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.Entity<Product>().ToCollection("Products");
-		}
+        }
 	}
 }

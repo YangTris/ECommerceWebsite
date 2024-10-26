@@ -1,5 +1,7 @@
+using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Persistence;
 using Persistence.Repositories;
@@ -13,11 +15,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 
-var settings = MongoClientSettings.FromConnectionString(builder.Configuration.GetConnectionString("DbConnection"));
+string connectionString = builder.Configuration.GetConnectionString("DbConnection");
+string dbName = builder.Configuration.GetConnectionString("DbName");
+var settings = MongoClientSettings.FromConnectionString(connectionString);
 settings.ServerApi = new ServerApi(ServerApiVersion.V1);
 var client = new MongoClient(settings);
 
-builder.Services.AddDbContext<RepositoryDbContext>(o => o.UseMongoDB(client,"ECommerceDatabase"));
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+	.AddMongoDbStores<ApplicationUser, ApplicationRole, ObjectId>(connectionString, dbName);
+builder.Services.AddDbContext<RepositoryDbContext>(o => o.UseMongoDB(client, dbName));
 
 
 var app = builder.Build();
@@ -34,7 +40,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

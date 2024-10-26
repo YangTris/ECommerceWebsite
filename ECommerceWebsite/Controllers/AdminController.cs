@@ -1,12 +1,14 @@
 ﻿using Domain.Entities;
 using ECommerceWebsite.Models;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 using Shared;
 
 namespace ECommerceWebsite.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	public class AdminController : Controller
 	{
 		private readonly IServiceManager _serviceManager;
