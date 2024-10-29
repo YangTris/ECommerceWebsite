@@ -1,4 +1,4 @@
-﻿
+﻿@model UserViewModel
 @{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
@@ -32,20 +32,21 @@
 <div id="login-container-body">
     <div class="login-container" id="login-container">
         <div class="form-container sign-up">
-            <form>
+            <form asp-controller="User" asp-action="Create">
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <input asp-for="Name" type="text" placeholder="Name">
+                <input asp-for="Email" type="email" placeholder="Email">
+                <input asp-for="PhoneNumber" type="phoneNumber" placeholder="Phone Number" />
+                <input asp-for="Password" type="password" placeholder="Password">
+                <button type="submit">Sign Up</button>
             </form>
         </div>
 
         <div class="form-container sign-in">
             <form method="post">
                 <h1>Sign In</h1>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password" required>
+                <input asp-for="Email" type="email" id="email" placeholder="Email" required>
+                <input asp-for="Password" type="password" id="password" placeholder="Password" required>
                 <div class="text-danger" asp-validation-summary="All"></div>
                 <button type="submit">Sign In</button>
             </form>
