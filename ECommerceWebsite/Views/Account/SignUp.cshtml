@@ -1,8 +1,8 @@
 ﻿@model ECommerceWebsite.Models.UserViewModel
 
 @{
-	ViewData["Title"] = "Create";
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 <div id="user-create-container-body">
@@ -13,10 +13,10 @@
             <div class="create-user-form-container">
                 @if (ViewBag.Message != null)
                 {
-                    <div class="create-message bg-success text-white">@ViewBag.Message</div>
+                        <div class="create-message bg-success text-white">@ViewBag.Message</div>
                 }
 
-                <form asp-action="Create">
+                <form asp-action="SignUp">
                     <div asp-validation-summary="ModelOnly" class="create-validation-summary text-danger"></div>
 
                     <div class="create-user-group">
@@ -49,8 +49,6 @@
                 </form>
             </div>
         </div>
-
-            <a class="create-back-link" asp-action="Index">Back to List</a>
     </div>
 </div>
 

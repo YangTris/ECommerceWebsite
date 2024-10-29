@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using ECommerceWebsite.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,11 @@ namespace ECommerceWebsite.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+        private void Errors(IdentityResult result)
+        {
+            foreach (IdentityError error in result.Errors)
+                ModelState.AddModelError("", error.Description);
+        }
         public IActionResult Login()
         {
             return View();
@@ -25,8 +31,33 @@ namespace ECommerceWebsite.Controllers
 			return View();
 		}
 
+        public IActionResult SignUp() => View();
+        [HttpPost]
+        public async Task<IActionResult> SignUp(UserViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser appUser = new ApplicationUser
+                {
+                    UserName = user.Name,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber
+                };
 
-		[HttpPost]
+                IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(appUser, "Customer");
+                    ViewBag.Message = "User Created Successfully";
+                }
+                else
+                    Errors(result);
+
+            }
+            return View();
+        }
+
+        [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Required][EmailAddress] string email, [Required] string password, string? returnurl)

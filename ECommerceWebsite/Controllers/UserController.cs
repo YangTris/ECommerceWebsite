@@ -32,31 +32,7 @@ namespace ECommerceWebsite.Controllers
 			}
 			return View(model);
 		}
-		public IActionResult Create() => View();
-		[HttpPost]
-		public async Task<IActionResult> Create(UserViewModel user)
-		{
-			if (ModelState.IsValid)
-			{
-				ApplicationUser appUser = new ApplicationUser
-				{
-					UserName = user.Name,
-					Email = user.Email,
-					PhoneNumber = user.PhoneNumber
-				};
 
-				IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
-				if (result.Succeeded)
-				{
-					await userManager.AddToRoleAsync(appUser, "Customer");
-					ViewBag.Message = "User Created Successfully";
-				}
-				else
-					Errors(result);
-
-			}
-			return View(user);
-		}
 
 		public async Task<IActionResult> Edit(string id)
 		{
