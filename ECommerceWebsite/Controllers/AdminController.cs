@@ -38,16 +38,24 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> ProductAdd(ProductViewModel product)
+		public async Task<IActionResult> ProductAdd(ProductViewModel product, IFormFile Image)
 		{
 			var entity = new ProductDTO(
 				product.name,
 				product.description,
 				product.category,
 				product.price,
-				"product.imageUrl",
+				//"product.imageUrl",
+				"",
 				product.timestamp
 			);
+			if(Image != null)
+			{
+				MemoryStream memoryStream = new MemoryStream();
+				Image.OpenReadStream().CopyTo(memoryStream);
+                entity.imageUrl = Convert.ToBase64String(memoryStream.ToArray());
+            }
+			
 			//Console.WriteLine(product.imageUrl.ToString());
 			await _serviceManager.ProductService.CreateAsync(entity);
 			return RedirectToAction("ProductList","Admin");

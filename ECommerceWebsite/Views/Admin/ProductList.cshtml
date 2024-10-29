@@ -50,7 +50,15 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.productId)</td>
                     <td>
-                        <img class="img-thumbnail" style="width: 50px; height: 50px;" />
+                        @if(String.IsNullOrEmpty(item.imageUrl))
+                        {
+                            <img src="~/Assets/default_img.jpg" class="img-thumbnail" style="width: 50px; height: 50px;" />
+                        }
+                        else
+                        {
+                            <img src="data:image/png;base64,@item.imageUrl" class="img-thumbnail" style="width: 50px; height: 50px;" />
+                        }
+                        
                     </td>
                     <td>@Html.DisplayFor(modelItem => item.name)</td>
                     <td>@Html.DisplayFor(modelItem => item.description)</td>
