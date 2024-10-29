@@ -5,44 +5,47 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<div id="user-edit-container-body">
+    <div class="user-edit-container">
+        <h1>Edit User</h1>
+        <div class="edit-user-row">
+            <div class="edit-user-form-container">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="edit-validation-summary text-danger"></div>
 
-<h4>UserViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                    <div class="edit-user-group">
+                        <label asp-for="Name" class="edit-label"></label>
+                        <input asp-for="Name" class="edit-input" />
+                        <span asp-validation-for="Name" class="edit-validation-message text-danger"></span>
+                    </div>
+
+                    <div class="edit-user-group">
+                        <label asp-for="Email" class="edit-label"></label>
+                        <input asp-for="Email" class="edit-input" />
+                        <span asp-validation-for="Email" class="edit-validation-message text-danger"></span>
+                    </div>
+
+                    <div class="edit-user-group">
+                        <label asp-for="PhoneNumber" class="edit-label"></label>
+                        <input asp-for="PhoneNumber" class="edit-input" />
+                        <span asp-validation-for="PhoneNumber" class="edit-validation-message text-danger"></span>
+                    </div>
+
+                    <div class="edit-user-group">
+                        <label asp-for="Password" class="edit-label"></label>
+                        <input asp-for="Password" class="edit-input" type="password" />
+                        <span asp-validation-for="Password" class="edit-validation-message text-danger"></span>
+                    </div>
+
+                    <div class="edit-submit-group">
+                        <input type="submit" value="Save" class="edit-submit-button" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
 <div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

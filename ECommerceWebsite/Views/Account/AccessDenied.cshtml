@@ -1,13 +1,19 @@
 ﻿
 @{
     ViewData["Title"] = "AccessDenied";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AccessLayout.cshtml";
 }
 
-<h1>Access Denied</h1>
-<h1>Access Denied</h1>
-<h1>Access Denied</h1>
-<h1>Access Denied</h1>
-<h1>Access Denied</h1>
+<div id="access-container-body">
+    <div class="access-denied-container">
+        <h1>Access Denied</h1>
+        <p>You do not have permission to access this page.</p>
+        <div class="access-denied-options">
+            <a href="javascript:history.back()" class="access-denied-link">Go Back</a>
+            <a href="/" class="access-denied-link">Home Page</a>
+            <a href="/contact" class="access-denied-link">Contact Support</a>
+        </div>
+    </div>
+</div>
 
 
