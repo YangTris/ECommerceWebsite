@@ -8,6 +8,7 @@ namespace Domain.Repositories
 {
 	public interface IRepositoryManager
 	{
+		ICartRepository CartRepository { get; }
 		IProductRepository ProductRepository { get; }
 		IUnitOfWork UnitOfWork { get; }
 	}

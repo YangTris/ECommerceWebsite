@@ -25,7 +25,7 @@ namespace Services
 			var productEntity = await _repositoryManager.ProductRepository.GetByIdAsync(productId, cancellationToken);
 			if (productEntity == null)
 			{
-				throw new ProductNotFoundException($"Product with id {productId} not found");
+				throw new ProductNotFoundException(productId.ToString());
 			}
 			return productEntity.Adapt<ProductDTO>();
 		}
@@ -41,7 +41,7 @@ namespace Services
 			var productEntity = await _repositoryManager.ProductRepository.GetByIdAsync(productId, cancellationToken);
 			if (productEntity == null)
 			{
-				throw new ProductNotFoundException($"Product with id {productId} not found");
+				throw new ProductNotFoundException(productId.ToString());
 			}
 			productEntity.name = product.name;
 			productEntity.price = product.price;
@@ -57,7 +57,7 @@ namespace Services
 			var productEntity = await _repositoryManager.ProductRepository.GetByIdAsync(productId, cancellationToken);
 			if (productEntity == null)
 			{
-				throw new ProductNotFoundException($"Product with id {productId} not found");
+				throw new ProductNotFoundException(productId.ToString());
 			}
 			_repositoryManager.ProductRepository.Remove(productEntity);
 			await _repositoryManager.UnitOfWork.SaveChangesAsync(cancellationToken);

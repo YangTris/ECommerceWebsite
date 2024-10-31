@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using Services.Abstractions;
 using Shared;
 using System.Collections;
+using System.Security.Claims;
 
 namespace ECommerceWebsite.Controllers
 {
@@ -23,6 +24,8 @@ namespace ECommerceWebsite.Controllers
 			AllProductsViewModel viewModel = new AllProductsViewModel();
 			viewModel.products = productList;
 			viewModel.countProduct = productList.Count();
+			if(User.Identity.IsAuthenticated)
+				viewModel.cartViewModel = await getCart();
 			return View("ProductList", viewModel);
 		}
 
@@ -34,5 +37,20 @@ namespace ECommerceWebsite.Controllers
 			return View("ProductDetails", product.Adapt<ProductViewModel>());
 		}
 		
+		private async Task<List<CartItemViewModel>> getCart()
+		{
+			var cart = await _serviceManager.CartService.GetByIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+			List<CartItemViewModel> items = new List<CartItemViewModel>();
+			foreach (var item in cart.items)
+			{
+				items.Add(new CartItemViewModel()
+				{
+					productId = item.productId,
+					quantity = item.quantity,
+					price = item.price
+				});
+			}
+			return items;
+		}
 	}
 }

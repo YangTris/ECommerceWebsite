@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.CartItemViewModel>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+	<div class="offcanvas-header">
+		<h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+		<div class="cart-items">
+			<!-- Mẫu một sản phẩm trong giỏ hàng -->
+			@{ decimal total = 0;
+				if(Model != null)
+				{
+					foreach (var item in Model)
+					{
+						total += item.price * item.quantity;
+						<div class="cart-item d-flex align-items-center mb-3">
+							<img src="~/Assets/Banner.jpg" alt="Sản phẩm 1" class="cart-item-image me-3">
+							<div class="cart-item-details flex-grow-1">
+								<h6 class="cart-item-title mb-0">Name</h6>
+								<p class="cart-item-id text-muted small mb-0">ID: @Html.DisplayFor(modelItem => item.productId)</p>
+								<div class="d-flex justify-content-between align-items-center mt-2">
+									<div class="cart-item-price">@Html.DisplayFor(modelItem => item.price)</div>
+									<div class="cart-item-quantity">
+										<button class="btn btn-sm btn-outline-secondary">-</button>
+										<span class="mx-2">@Html.DisplayFor(modelItem => item.quantity)</span>
+										<button class="btn btn-sm btn-outline-secondary">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				}
+			}
+			<!-- Thêm các mục sản phẩm khác tương tự ở đây -->
+		</div>
+	</div>
+	<div class="offcanvas-footer p-3 border-top">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<span class="fw-bold">Total:</span>
+			<span class="fw-bold">@total</span>
+		</div>
+		<button class="btn btn-primary w-100 bg-black">Payout</button>
+	</div>
+</div>

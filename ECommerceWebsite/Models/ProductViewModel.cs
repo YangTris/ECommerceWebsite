@@ -1,6 +1,6 @@
 ﻿namespace ECommerceWebsite.Models
 {
-    public class ProductViewModel
+    public class ProductViewModel : ViewModelBase
     {
 		public string productId { get; set; }
 		public string name { get; set; }

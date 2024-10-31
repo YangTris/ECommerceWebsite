@@ -115,7 +115,6 @@
 			</div>
 		</div>
 	</div><!--END PRODUCT CATEGORIES-->
-
 	<!--PRODUCT CARDS-->
 	<div class="product-section" id="product-section-all">
 		<div class="product-section-top-container">
@@ -144,9 +143,11 @@
 								<h1>@Html.DisplayFor(modelItem => item.name)</h1>
 								<div class="product-purchase">
 									<span class="product-price">@Html.DisplayFor(modelItem => item.price)$</span>
-									<button class="blue-button">
-										Add to cart
-									</button>
+									<form method="post" asp-controller="Cart" asp-action="Add" asp-route-productId="@item.productId" asp-route-quantity="1">
+										<button type="submit">
+											Add to cart
+										</button>
+									</form>
 								</div>
 							</div>
 						</a>
