@@ -21,24 +21,21 @@
 			</div>
 			<div id="navbar-links">
 				<ul>
-					<li>
-						<a href="../Home/Index">Home</a>
-					</li>
-					<li>
-						<a href="../Product/ProductList">Product</a>
-					</li>
-					<li>
-						<a href="#">Contact</a>
-					</li>
-					<li>
-						<a href="#">About</a>
-					</li>
+					<li><a href="../Home/Index">Home</a></li>
+					<li><a href="../Product/ProductList">Product</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">About</a></li>
 					@{
 						if (User?.Identity?.IsAuthenticated ?? false)
 						{
-							<li class="nav-item">
-								<u>@User.Identity.Name</u>
-								<a asp-controller="Account" asp-action="Logout" class="logout-button">Logout</a>
+							<!-- User Dropdown with only Logout option -->
+							<li class="nav-item-dropdown">
+								<a href="#" class="dropdown-toggle" id="userDropdown">
+									<u>@User.Identity.Name</u>
+								</a>
+								<div class="dropdown-menu">
+									<a asp-controller="Account" asp-action="Logout" class="logout-button">Logout<i class="bi bi-box-arrow-in-right"></i></a>
+								</div>
 							</li>
 						}
 					}
@@ -62,6 +59,8 @@
 			</div>
 		</div>
 	</nav>
+
+
 
 	<!-- Offcanvas giỏ hàng -->
 	@{
@@ -157,6 +156,23 @@
 				cartCount.innerHTML = document.querySelectorAll('.blue-button.active').length;
 			})
 		})*/
+		document.addEventListener("DOMContentLoaded", function () {
+			const userDropdown = document.getElementById("userDropdown");
+			const dropdown = document.querySelector(".nav-item-dropdown");
+
+			userDropdown.addEventListener("click", function (event) {
+				event.preventDefault();
+				dropdown.classList.toggle("show");
+			});
+
+			// Close the dropdown if clicked outside
+			document.addEventListener("click", function (event) {
+				if (!dropdown.contains(event.target) && event.target !== userDropdown) {
+					dropdown.classList.remove("show");
+				}
+			});
+		});
+
 	</script>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
