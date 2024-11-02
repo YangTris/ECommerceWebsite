@@ -356,6 +356,21 @@ button.add-to-cart{
     font-size: 16px;
 }
 
+/*NOTÌICATION*/
+.toast-notification {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.toast-notification.show {
+    opacity: 1;
+}
+
 /*PROMO*/
 .promo-container{
     width: 100%;

@@ -43,18 +43,52 @@
         </div>
         <div class="d-flex flex-column gap-2">
             <div class="d-flex gap-2">
-                <button class="btn btn-outline-secondary w-50" id="saveCartButton">Save</button>
+                <button class="btn btn-outline-secondary w-50" id="saveCartButton" onclick="saveCart()">Save</button>
                 <button class="btn btn-outline-danger w-50" id="clearCartButton">Clear Cart</button>
             </div>
-            <button class="btn btn-primary w-100 bg-blue mt-2">Payout</button>
+            <button class="btn btn-primary w-100 bg-blue mt-2" onclick="confirmPayout()">Payout</button>
         </div>
     </div>
 </div>
 
+<div id="notificationContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+
+
 <script>
-    function removeCartItem(productId) {
-        // Add your JavaScript code here to handle removing the item with the given productId
-        // This could involve making an AJAX call to remove the item from the cart on the server
-        alert(`Remove product with ID: ${productId}`);
+    function showNotification(message) {
+        const notificationContainer = document.getElementById('notificationContainer');
+
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.classList.add('toast-notification', 'show');
+        notification.innerText = message;
+
+        // Append to container
+        notificationContainer.appendChild(notification);
+
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
     }
+
+    function removeCartItem(productId) {
+        showNotification(`Product with ID ${productId} removed from the cart.`);
+    }
+
+    function saveCart() {
+        // Simulate save logic
+        showNotification("Cart saved successfully!");
+    }
+
+    function confirmPayout() {
+        const saveFirst = confirm("Would you like to save your cart before proceeding to payout?");
+        if (saveFirst) saveCart();
+
+        showNotification("Proceeding to payout...");
+    }
+
+
 </script>
+
