@@ -22,11 +22,15 @@ namespace Persistence
 
 		public DbSet<Product> Products { get; init; }
 		public DbSet<Cart> Carts { get; init; }
+		public DbSet<Order> Orders { get; init; }
+		public DbSet<Payment> Payments { get; init; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.Entity<Product>().ToCollection("Products");
 			modelBuilder.Entity<Cart>().ToCollection("Carts");
-        }
+			modelBuilder.Entity<Order>().ToCollection("Orders");
+			modelBuilder.Entity<Payment>().ToCollection("Payments");
+		}
 	}
 }
