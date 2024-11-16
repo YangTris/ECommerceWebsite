@@ -10,6 +10,8 @@ namespace Domain.Repositories
 	{
 		ICartRepository CartRepository { get; }
 		IProductRepository ProductRepository { get; }
+		IPaymentRepository PaymentRepository { get; }
+		IOrderRepository OrderRepository { get; }
 		IUnitOfWork UnitOfWork { get; }
 	}
 }

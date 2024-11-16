@@ -45,7 +45,7 @@ namespace ECommerceWebsite.Controllers
 				if (userCart.items.Any(x => x.productId == productId))
 				{
 					var item = userCart.items.First(x => x.productId == productId);
-					item.quantity = quantity;
+					item.quantity += quantity;
 				}
 				else
 				{
@@ -61,7 +61,7 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> DeleteItem(string id)
+		public async Task<JsonResult> DeleteItem(string id)
 		{
 			var userId = ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			var userCart = await _serviceManager.CartService.GetByIdAsync(userId);
@@ -71,7 +71,8 @@ namespace ECommerceWebsite.Controllers
 				userCart.items.Remove(item);
 				await _serviceManager.CartService.UpdateAsync(userId, userCart);
 			}
-			return RedirectToAction("Index", "Cart");
+			//return RedirectToAction("Index", "Cart");
+			return Json("Response from Delete");
 		}
 	}
 }

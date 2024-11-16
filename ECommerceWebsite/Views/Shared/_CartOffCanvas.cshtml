@@ -9,10 +9,12 @@
         <div class="cart-items" style="max-height: 500px; overflow-y: auto;">
             @{
                 decimal total = 0;
+                decimal quantity;
                 if (Model != null)
                 {
                     foreach (var item in Model)
                     {
+                        quantity = item.quantity;
                         total += item.price * item.quantity;
                         <div class="cart-item d-flex align-items-center mb-3 position-relative" id="cart-item-@item.productId">
                             <img src="~/Assets/Banner.jpg" alt="Product" class="cart-item-image me-3">
