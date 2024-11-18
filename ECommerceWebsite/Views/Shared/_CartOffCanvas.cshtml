@@ -20,17 +20,17 @@
                             <img src="~/Assets/Banner.jpg" alt="Product" class="cart-item-image me-3">
                             <div class="cart-item-details flex-grow-1">
                                 <h6 class="cart-item-title mb-0">Name</h6>
-                                <p class="cart-item-id text-muted small mb-0">ID: @Html.DisplayFor(modelItem => item.productId)</p>
+                                <p class="cart-item-id text-muted small mb-0">ID: @item.productId</p>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <div class="cart-item-price" data-price="@item.price">@Html.DisplayFor(modelItem => item.price)$</div>
+                                    <div class="cart-item-price" data-price="@item.price">@item.price$</div>
                                     <div class="cart-item-quantity">
-                                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(@item.productId, -1)">-</button>
-                                        <span class="mx-2 quantity-value">@Html.DisplayFor(modelItem => item.quantity)</span>
-                                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(@item.productId, 1)">+</button>
+                                        <button class="btn btn-sm btn-outline-secondary quantity-btn" onclick="updateQuantity('@item.productId', -1)">-</button>
+                                        <span class="mx-2 quantity-value">@item.quantity</span>
+                                        <button class="btn btn-sm btn-outline-secondary quantity-btn" onclick="updateQuantity('@item.productId', 1)">+</button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Remove" style="font-size: 0.8rem;" onclick="removeCartItem(@item.productId)"></button>
+                            <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Remove" style="font-size: 0.8rem;" onclick="removeCartItem('@item.productId')"></button>
                         </div>
                     }
                 }
@@ -45,52 +45,111 @@
         <div class="d-flex flex-column gap-2">
             <div class="d-flex gap-2">
                 <button class="btn btn-outline-secondary w-50" id="saveCartButton" onclick="saveCart()">Save</button>
-                <button class="btn btn-outline-danger w-50" id="clearCartButton">Clear Cart</button>
+                <button class="btn btn-outline-danger w-50" id="clearCartButton" onclick="clearCart()">Clear Cart</button>
             </div>
             <button class="btn btn-primary w-100 bg-blue mt-2" onclick="confirmPayout()">Payout</button>
         </div>
     </div>
 </div>
 
-<div id="notificationContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
-
-
-
 <script>
+    function updateQuantity(productId, change) {
+        const cartItem = document.getElementById(`cart-item-${productId}`);
+        const quantityElement = cartItem.querySelector('.quantity-value');
+        const priceElement = cartItem.querySelector('.cart-item-price');
+
+        let currentQuantity = parseInt(quantityElement.textContent);
+        let price = parseFloat(priceElement.getAttribute('data-price'));
+
+        const newQuantity = currentQuantity + change;
+
+        if (newQuantity < 1) {
+            showNotification("Quantity cannot be less than 1");
+            return;
+        }
+
+        quantityElement.textContent = newQuantity;
+        updateTotalPrice();
+        showNotification(`Updated quantity for product ID ${productId} to ${newQuantity}`);
+    }
+
+    function updateTotalPrice() {
+        let total = 0;
+        const cartItems = document.querySelectorAll('.cart-item');
+
+        cartItems.forEach(item => {
+            const price = parseFloat(item.querySelector('.cart-item-price').getAttribute('data-price'));
+            const quantity = parseInt(item.querySelector('.quantity-value').textContent);
+            total += price * quantity;
+        });
+
+        document.getElementById('cart-total').textContent = total.toFixed(2) + '$';
+    }
+
     function showNotification(message) {
         const notificationContainer = document.getElementById('notificationContainer');
-
-        // Create notification element
         const notification = document.createElement('div');
         notification.classList.add('toast-notification', 'show');
         notification.innerText = message;
-
-        // Append to container
         notificationContainer.appendChild(notification);
-
-        // Remove notification after 3 seconds
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => notification.remove(), 300);
         }, 3000);
     }
 
+    function clearCart() {
+        const cartItems = document.querySelector('.cart-items');
+        cartItems.innerHTML = '';
+        document.getElementById('cart-total').textContent = '0$';
+        updateCartCount();
+        showNotification("Cart cleared successfully!");
+    }
+
+    function updateCartCount() {
+        const cartItems = document.querySelectorAll('.cart-item');
+        const cartCountElement = document.querySelector('#cart-link span');
+        if (cartCountElement) {
+            cartCountElement.textContent = cartItems.length.toString();
+        }
+    }
+
     function removeCartItem(productId) {
+        const cartItem = document.getElementById(`cart-item-${productId}`);
+        cartItem.remove();
+        updateTotalPrice();
+        updateCartCount();
         showNotification(`Product with ID ${productId} removed from the cart.`);
+
+        const cartItems = document.querySelectorAll('.cart-item');
+        if (cartItems.length === 0) {
+            document.getElementById('cart-total').textContent = '0$';
+        }
     }
 
     function saveCart() {
-        // Simulate save logic
         showNotification("Cart saved successfully!");
     }
 
     function confirmPayout() {
         const saveFirst = confirm("Would you like to save your cart before proceeding to payout?");
         if (saveFirst) saveCart();
-
         showNotification("Proceeding to payout...");
     }
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const quantityElements = document.querySelectorAll('.quantity-value');
+        quantityElements.forEach(element => {
+            const quantity = parseInt(element.textContent);
+            const minusButton = element.parentElement.querySelector('.quantity-btn:first-child');
+            minusButton.disabled = quantity <= 1;
+        });
 
+        const cartItems = document.querySelectorAll('.cart-item');
+        if (cartItems.length === 0) {
+            document.getElementById('cart-total').textContent = '0$';
+        }
+
+        updateCartCount();
+    });
 </script>
-
