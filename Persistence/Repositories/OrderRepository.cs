@@ -27,8 +27,11 @@ namespace Persistence.Repositories
 		{
 			return await _dbContext.Orders.FirstOrDefaultAsync(x => x.orderId == orderId, cancellationToken);
 		}
-
-		public void Insert(Order order)
+        public async Task<Order> GetByUserIdAsync(ObjectId userId, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Orders.FirstOrDefaultAsync(x => x.userId == userId, cancellationToken);
+        }
+        public void Insert(Order order)
 		{
 			_dbContext.Orders.Add(order);
 		}

@@ -24,8 +24,11 @@ namespace ECommerceWebsite.Controllers
 			AllProductsViewModel viewModel = new AllProductsViewModel();
 			viewModel.products = productList;
 			viewModel.countProduct = productList.Count();
-			if(User.Identity.IsAuthenticated)
+			if (User.Identity.IsAuthenticated)
+			{
 				viewModel.cartViewModel = await getCart();
+				viewModel.total = viewModel.cartViewModel.Sum(x => x.price * x.quantity);
+			}
 			return View("ProductList", viewModel);
 		}
 

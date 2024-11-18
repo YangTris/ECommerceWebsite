@@ -1,0 +1,75 @@
+﻿@model ECommerceWebsite.Models.OrderViewModel
+
+<div>
+    <h4>OrderViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.userId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.userId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.phoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        @foreach (var item in Model.items)
+        {
+        <div class="cart-item d-flex align-items-center mb-3 position-relative" id="cart-item-@item.productId">
+            <img src="~/Assets/Banner.jpg" alt="Product" class="cart-item-image me-3">
+            <div class="cart-item-details flex-grow-1">
+                <h6 class="cart-item-title mb-0">Name</h6>
+                <p class="cart-item-id text-muted small mb-0">ID: @Html.DisplayFor(modelItem => item.productId)</p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="cart-item-price" data-price="@item.price">@Html.DisplayFor(modelItem => item.price)$</div>
+                    <div class="cart-item-price" data-price="@item.price">Quantity: @Html.DisplayFor(modelItem => item.quantity)</div>
+                </div>
+
+            </div>
+            <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Remove" style="font-size: 0.8rem;" onclick="removeCartItem(@item.productId)"></button>
+        </div>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.total)
+        </dd>
+        <form method="post" asp-controller="Order" asp-action="Create" asp-route-vm="@Model.address">
+            <button type="submit" id="blue-button-card">
+                Payout
+            </button>
+        </form>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -12,7 +12,8 @@ namespace Domain.Repositories
 	{
 		Task<IEnumerable<Order>> GetAllAsync(CancellationToken cancellationToken = default);
 		Task<Order> GetByIdAsync(ObjectId orderId, CancellationToken cancellationToken = default);
-		void Insert(Order order);
+        Task<Order> GetByUserIdAsync(ObjectId userId, CancellationToken cancellationToken = default);
+        void Insert(Order order);
 		void Remove(Order order);
 	}
 }
