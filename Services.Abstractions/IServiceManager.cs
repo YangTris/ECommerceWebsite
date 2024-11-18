@@ -12,5 +12,6 @@ namespace Services.Abstractions
 		ICartService CartService { get; }
 		IOrderService OrderService { get; }
 		IPaymentService PaymentService { get; }
+		IVnPayService VnPayService { get; }
 	}
 }
