@@ -2,20 +2,20 @@
 
 ## Projects
 
-[Tic-tac-toe](https://github.com/YangTris/Tic-tac-toe)
+[E-Commerce-Website](https://github.com/YangTris/ECommerceWebsite)
 
-| **Description project**   | Tic-tac-toe advance mode is a two-player game played on a 9x9 grid. Players take turns marking either an "X" or an "O" in empty cells. The goal is to be the first to create a line of three of your symbols horizontally, vertically, or diagonally. It's simple yet strategic, often used as a teaching tool for basic game theory and critical thinking. |
+| **Description project**   | The project is a comprehensive e-commerce application designed for online retail businesses to showcase products, manage customers, and process transactions. Built using C# with ASP.NET Core, the platform provides a secure, scalable, and user-friendly interface for both customers and administrators. |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Technologies used**     | Python, Pygame, Socket, Threading, Git, VS Code                                                                                                                                                                                                                                                                                                             |
-| **Team size**             | 2 members                                                                                                                                                                                                                                                                                                                                                   |
-| **Time start - Time end** | April 2024 - Present                                                                                                                                                                                                                                                                                                                                        |
-| **Responsibility**        | • Create socket that can connect player from client to server <br> • Async the screen using threading <br> • Create logic code <br> • Create UI <br> • Generate chat function                                                                                                                                                                               |
-| **Learning from project** | • Learned how to use socket and threading <br> • Learned how to build multiplayer game <br> • Solved problems relating to asynchronous tasks                                                                                                                                                                                                                |
-| **Github**                | [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/YangTris/Tic-tac-toe)                                                                                                                                                                                                                           |
-| **Domain name**           | Update later                                                                                                                                                                                                                                                                                                                                                |
+| **Technologies used**     | APIs (MongoDB, Dialogflow, VnPay), Entity Framework LINQ, MongoDb, C#, ASP.NET Core, Jira, Git, VS Code |                                                                                                                                                                                                                                                                                            
+| **Team size**             | 3 members |                                                                                                                                                                                                                                                                                                                                      
+| **Time start - Time end** | October 2024 - Present  |                                                                                                                                                                                                                                                                                                                                    
+| **Feature**        | • Applied Onion Architecture <br> • Chatbot Integration <br> • Payment via VnPay <br> • Using MongoDB |                                                                                                                                                                   
+| **Learning from project** | • Integrating third-party libraries (MongoDB, Dialogflow, VnPay, ...) <br> • Learned how to build Onion Architecture <br> • Learned how to stores data with NoSQL database <br> • Solved problems relating to asynchronous tasks |                                                                                                                                                                                                               
+| **Github**                | [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/YangTris/ECommerceWebsite)  |                                                                                                                                                                                                                         
+| **Domain name**           | Update later |                                                                                                                                                                                                                                                                                                                                                
 
 
-## How to Run?
+## How to start?
 
 - Clone the Repository
 
@@ -23,10 +23,6 @@
 git clone https://github.com/YangTris/ECommerceWebsite
 ```
 
-
-- Now you can start playing Tic Tac Toe over a network.
-
----
 
 ## Report PDF
 
