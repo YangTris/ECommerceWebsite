@@ -30,7 +30,7 @@ namespace Services
 		public string CreatePaymentUrl(HttpContext context)
 		{
 			// Get Config Info
-			string vnp_Returnurl = "https://localhost:44346/Admin/ProductList";//ConfigurationManager.AppSettings["vnp_Returnurl"]; // URL for results return
+			string vnp_Returnurl = "https://localhost:44346/Payment/PaymentSuccess";//ConfigurationManager.AppSettings["vnp_Returnurl"]; // URL for results return
 			string vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; //ConfigurationManager.AppSettings["vnp_Url"]; // VNPAY payment URL
 			string vnp_TmnCode = "V9M9GBAP";  //ConfigurationManager.AppSettings["vnp_TmnCode"]; // Merchant site code
 			string vnp_HashSecret = "O76TAXIIFBGM19W73S7QHKW6U4GLRVAM";  //ConfigurationManager.AppSettings["vnp_HashSecret"]; // Secret key
