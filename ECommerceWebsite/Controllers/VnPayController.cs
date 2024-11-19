@@ -12,6 +12,11 @@ namespace ECommerceWebsite.Controllers
 			_serviceManager = serviceManager;
 		}
 
+		public IActionResult Index()
+		{
+			return View();
+		}
+
 		[HttpGet]
 		public ActionResult CreatePaymentUrl()
 		{
