@@ -76,7 +76,7 @@ namespace ECommerceWebsite.Controllers
                 ModelState.AddModelError(nameof(email), "Login Failed: Invalid Email or Password");
             }
 
-            return View();
+            return RedirectToAction("Login");
         }
 
         [Authorize]

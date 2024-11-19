@@ -107,17 +107,18 @@ namespace ECommerceWebsite.Controllers
 		private async Task<List<CartItemViewModel>> getCart()
 		{
 			var cart = await serviceManager.CartService.GetByIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-			
 			List<CartItemViewModel> items = new List<CartItemViewModel>();
-			foreach (var item in cart.items)
-			{
-				items.Add(new CartItemViewModel()
+			if(cart != null)
+				foreach (var item in cart.items)
 				{
-					productId = item.productId,
-					quantity = item.quantity,
-					price = item.price
-				});
-			}
+					items.Add(new CartItemViewModel()
+					{
+						productId = item.productId,
+						quantity = item.quantity,
+						price = item.price,
+						name = item.productName
+					});
+				}
 			return items;
 		}
 	}
