@@ -76,5 +76,12 @@ namespace ECommerceWebsite.Controllers
 			//return RedirectToAction("Index", "Cart");
 			return Json("Response from Delete");
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> ClearCart()
+		{
+			await _serviceManager.CartService.DeleteAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+			return RedirectToAction("Index", "Home");
+		}
 	}
 }

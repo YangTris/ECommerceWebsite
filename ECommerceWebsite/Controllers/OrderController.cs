@@ -83,6 +83,7 @@ namespace ECommerceWebsite.Controllers
 			{
 				orderEntity.items.Add(new CartItemDTO()
 				{
+					productName = item.name,
 					productId = item.productId,
 					quantity = item.quantity,
 					price = item.price
