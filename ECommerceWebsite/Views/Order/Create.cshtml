@@ -1,4 +1,4 @@
-﻿@model ECommerceWebsite.Models.OrderViewModel
+﻿@* @model ECommerceWebsite.Models.OrderViewModel
 
 <div>
     <h4>OrderViewModel</h4>
@@ -72,4 +72,66 @@
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
+</div> *@
+
+@model ECommerceWebsite.Models.OrderViewModel
+
+@{
+    Layout = "~/Views/Shared/_OrderLayout.cshtml";
+}
+
+<div class="order-page-body">
+    <div class="order-page-container">
+        <h4 class="order-page-title">Order Summary</h4>
+        <hr />
+
+        <dl class="row order-page-details">
+            <dt class="col-sm-4">OrderDate:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderDate)</dd>
+
+            <dt class="col-sm-4">ID:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.userId)</dd>
+
+            <dt class="col-sm-4">Name:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.name)</dd>
+
+            <dt class="col-sm-4">Address:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.address)</dd>
+
+            <dt class="col-sm-4">PhoneNumber:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.phoneNumber)</dd>
+
+            <dt class="col-sm-4">Email:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.email)</dd>
+        </dl>
+
+        <h5 class="order-section-title">Order Items</h5>
+        <div class="order-items-list">
+            @foreach (var item in Model.items)
+            {
+                <div class="order-item">
+                    <img src="~/Assets/Banner.jpg" alt="Product" class="order-item-image">
+                    <div class="order-item-details">
+                        <p class="order-item-info">ID: @item.productId</p>
+                        <p class="order-item-info">Price: $@item.price</p>
+                        <p class="order-item-info">Quantity: @item.quantity</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <dl class="row order-page-details order-spacing-small">
+            <dt class="col-sm-4">Total:</dt>
+            <dd class="col-sm-8">$@Html.DisplayFor(model => model.total)</dd>
+        </dl>
+
+        <form method="post" asp-controller="Order" asp-action="Create" asp-route-vm="@Model.address">
+            <button type="submit" class="order-btn-primary">Payout</button>
+        </form>
+
+        <div class="order-actions">
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "order-btn-secondary" })
+            <a asp-action="Index" class="order-btn-secondary">Back to List</a>
+        </div>
+    </div>
 </div>
