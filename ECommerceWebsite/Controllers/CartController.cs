@@ -32,6 +32,7 @@ namespace ECommerceWebsite.Controllers
 					{
 					new CartItemDTO(
 						productId,
+						product.name,
 						quantity,
 						product.price
 					)
@@ -51,6 +52,7 @@ namespace ECommerceWebsite.Controllers
 				{
 					userCart.items.Add(new CartItemDTO(
 						productId,
+						product.name,
 						quantity,
 						product.price
 					));

@@ -11,6 +11,7 @@ namespace Domain.Entities
 	public class CartItem
 	{
 		public ObjectId productId { get; set; }
+		public string productName { get; set; }
 		public int quantity { get; set; }
 		public decimal price { get; set; }
 	}

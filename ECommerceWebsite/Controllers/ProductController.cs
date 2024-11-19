@@ -12,9 +12,11 @@ namespace ECommerceWebsite.Controllers
 	public class ProductController : Controller
 	{
 		private readonly IServiceManager _serviceManager;
+		private List<CartItemViewModel> _cart;
 		public ProductController(IServiceManager serviceManager)
 		{
 			_serviceManager = serviceManager;
+
 		}
 
 		[HttpGet]
@@ -39,21 +41,23 @@ namespace ECommerceWebsite.Controllers
 			var product = await _serviceManager.ProductService.GetByIdAsync(productId);
 			return View("ProductDetails", product.Adapt<ProductViewModel>());
 		}
-		
+
 		private async Task<List<CartItemViewModel>> getCart()
 		{
 			var cart = await _serviceManager.CartService.GetByIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 			List<CartItemViewModel> items = new List<CartItemViewModel>();
-			
-			foreach (var item in cart.items)
-			{
-				items.Add(new CartItemViewModel()
+			if (cart != null)
+				foreach (var item in cart.items)
 				{
-					productId = item.productId,
-					quantity = item.quantity,
-					price = item.price
-				});
-			}
+					items.Add(new CartItemViewModel()
+					{
+						productId = item.productId,
+						quantity = item.quantity,
+						price = item.price,
+						name = item.productName
+					});
+				}
+			_cart = items;
 			return items;
 		}
 	}

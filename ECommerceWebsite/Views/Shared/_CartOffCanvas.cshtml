@@ -19,7 +19,7 @@
                         <div class="cart-item d-flex align-items-center mb-3 position-relative" id="cart-item-@item.productId">
                             <img src="~/Assets/Banner.jpg" alt="Product" class="cart-item-image me-3">
                             <div class="cart-item-details flex-grow-1">
-                                <h6 class="cart-item-title mb-0">Name</h6>
+                                <h6 class="cart-item-title mb-0">@item.name</h6>
                                 <p class="cart-item-id text-muted small mb-0">ID: @item.productId</p>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
                                     <div class="cart-item-price" data-price="@item.price">@item.price$</div>
@@ -69,9 +69,15 @@
         }
 
         quantityElement.textContent = newQuantity;
+
+        // Vô hiệu hóa nút giảm khi số lượng <= 1
+        const minusButton = cartItem.querySelector('.quantity-btn:first-child');
+        minusButton.disabled = newQuantity <= 1;
+
         updateTotalPrice();
         showNotification(`Updated quantity for product ID ${productId} to ${newQuantity}`);
     }
+
 
     function updateTotalPrice() {
         let total = 0;
@@ -138,18 +144,19 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const quantityElements = document.querySelectorAll('.quantity-value');
-        quantityElements.forEach(element => {
-            const quantity = parseInt(element.textContent);
-            const minusButton = element.parentElement.querySelector('.quantity-btn:first-child');
+        const cartItems = document.querySelectorAll('.cart-item');
+
+        cartItems.forEach(cartItem => {
+            const quantityElement = cartItem.querySelector('.quantity-value');
+            const minusButton = cartItem.querySelector('.quantity-btn:first-child');
+            const quantity = parseInt(quantityElement.textContent);
+
+            // Vô hiệu hóa nút giảm nếu số lượng <= 1
             minusButton.disabled = quantity <= 1;
         });
 
-        const cartItems = document.querySelectorAll('.cart-item');
-        if (cartItems.length === 0) {
-            document.getElementById('cart-total').textContent = '0$';
-        }
-
         updateCartCount();
+        updateTotalPrice();
     });
+
 </script>
