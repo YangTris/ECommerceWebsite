@@ -27,9 +27,9 @@ namespace Persistence.Repositories
 		{
 			return await _dbContext.Orders.FirstOrDefaultAsync(x => x.orderId == orderId, cancellationToken);
 		}
-        public async Task<Order> GetByUserIdAsync(ObjectId userId, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Order>> GetByUserIdAsync(ObjectId userId, CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Orders.FirstOrDefaultAsync(x => x.userId == userId, cancellationToken);
+            return await _dbContext.Orders.Where(x => x.userId == userId).AsNoTracking().ToListAsync(cancellationToken);
         }
         public void Insert(Order order)
 		{

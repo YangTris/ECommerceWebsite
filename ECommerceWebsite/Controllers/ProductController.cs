@@ -44,6 +44,7 @@ namespace ECommerceWebsite.Controllers
 		{
 			var cart = await _serviceManager.CartService.GetByIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 			List<CartItemViewModel> items = new List<CartItemViewModel>();
+			
 			foreach (var item in cart.items)
 			{
 				items.Add(new CartItemViewModel()

@@ -63,17 +63,43 @@ namespace ECommerceWebsite.Controllers
         }
 
         [HttpPost]
-		public async Task<IActionResult> Create(OrderViewModel vm)
+		public async Task<IActionResult> Create(string userId ,string name, string address,string phone, string email)
         {
-            var orderEntity = vm.Adapt<OrderDTO>();
-            //await serviceManager.OrderService.CreateAsync(orderEntity);
+			//var orderEntity = vm.Adapt<OrderDTO>();
+			var orderEntity = new OrderDTO();
+			orderEntity.OrderDate = DateTime.Now;
+			orderEntity.userId = userId;
+			orderEntity.name = name;
+			orderEntity.address = address;
+			if(address == null)
+			{
+				orderEntity.address = "N/A";
+			}
+			orderEntity.phoneNumber = phone;
+			orderEntity.email = email;
+			var cart = await getCart();
+			orderEntity.items = new List<CartItemDTO>();
+			foreach(var item in cart)
+			{
+				orderEntity.items.Add(new CartItemDTO()
+				{
+					productId = item.productId,
+					quantity = item.quantity,
+					price = item.price
+				});
+			}
+			orderEntity.total = cart.Sum(x => x.price * x.quantity);
+            await serviceManager.OrderService.CreateAsync(orderEntity);
             return RedirectToAction("History");
         }
 
 		public async Task<IActionResult> History()
 		{
 			var order = await serviceManager.OrderService.GetByUserIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
-			var viewmodel = order.Adapt<OrderDetailViewModel>();
+			var viewmodel = new OrderDetailViewModel();
+			var cart = await getCart();
+			viewmodel.orders = order.Adapt<List<OrderViewModel>>();
+			viewmodel.cartViewModel = cart;
 			return View(viewmodel);
 		}
 

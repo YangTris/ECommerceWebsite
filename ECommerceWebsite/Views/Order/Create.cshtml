@@ -125,7 +125,12 @@
             <dd class="col-sm-8">$@Html.DisplayFor(model => model.total)</dd>
         </dl>
 
-        <form method="post" asp-controller="Order" asp-action="Create" asp-route-vm="@Model.address">
+        <form method="post" asp-controller="Order" asp-action="Create">
+            <input name="userId" value="@Model.userId" hidden />
+            <input name="name" value="@Model.name" hidden />
+            <input name="address" value="@Model.address" hidden/>
+            <input name="phone" value="@Model.phoneNumber" hidden/>
+            <input name="email" value="@Model.email" hidden/>
             <button type="submit" class="order-btn-primary">Payout</button>
         </form>
 

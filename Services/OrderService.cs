@@ -54,14 +54,14 @@ namespace Services
 			}
 			return orderEntity.Adapt<OrderDTO>();
 		}
-        public async Task<OrderDTO> GetByUserIdAsync(ObjectId userId, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<OrderDTO>> GetByUserIdAsync(ObjectId userId, CancellationToken cancellationToken = default)
         {
             var orderEntity = await _repositoryManager.OrderRepository.GetByUserIdAsync(userId, cancellationToken);
             if (orderEntity == null)
             {
                 throw new OrderNotFoundException(userId.ToString());
             }
-            return orderEntity.Adapt<OrderDTO>();
+            return orderEntity.Adapt<IEnumerable<OrderDTO>>();
         }
         public async Task UpdateAsync(ObjectId orderId, OrderDTO order, CancellationToken cancellationToken = default)
 		{
