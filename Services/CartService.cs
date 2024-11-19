@@ -51,20 +51,22 @@ namespace Services
 			var cartEntity = await _repositoryManager.CartRepository.GetByIdAsync(userId, cancellationToken);
 			if (cartEntity == null)
 			{
-				throw new CartNotFoundException(userId.ToString());
+				await CreateAsync(new CartDTO { userId = userId.ToString() }, cancellationToken);
+				return null;
 			}
 			var cart = new CartDTO();
 			cart.cartId = cartEntity.cartId.ToString();
 			cart.userId = cartEntity.userId.ToString();
 			cart.items = new();
-			foreach (var item in cartEntity.items) 
-			{ 
-				var cartItem = new CartItemDTO();
-				cartItem.productId = item.productId.ToString();
-				cartItem.quantity = item.quantity;
-				cartItem.price = item.price;
-				cart.items.Add(cartItem);
-			}
+			if (cartEntity.items != null)
+				foreach (var item in cartEntity.items) 
+				{ 
+					var cartItem = new CartItemDTO();
+					cartItem.productId = item.productId.ToString();
+					cartItem.quantity = item.quantity;
+					cartItem.price = item.price;
+					cart.items.Add(cartItem);
+				}
 			return cart;
 		}
 
@@ -75,6 +77,9 @@ namespace Services
 			{
 				throw new CartNotFoundException(userId.ToString());
 			}
+			if(cartEntity.items == null)
+				cartEntity.items = new();
+
 			cartEntity.items.Clear();
 			foreach(var item in cart.items)
 			{

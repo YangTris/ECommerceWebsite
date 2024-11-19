@@ -9,7 +9,7 @@
         <h4 class="order-page-title">Order Details</h4>
         <hr />
 
-        <form method="post" asp-controller="Order" asp-action="UpdateOrder">
+        <form method="post" asp-controller="Order" asp-action="Create">
             <dl class="row order-page-details">
                 <dt class="col-sm-4">OrderDate:</dt>
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderDate)</dd>
@@ -57,7 +57,7 @@
                 <dt class="col-sm-4">Total:</dt>
                 <dd class="col-sm-8">$@Html.DisplayFor(model => model.total)</dd>
             </dl>
-
+            <input name="userId" value="@Model.userId" hidden />
             <div class="order-actions">
                 <button type="submit" class="order-btn-primary">Payout</button>
             </div>

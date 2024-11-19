@@ -63,7 +63,7 @@ namespace ECommerceWebsite.Controllers
         }
 
         [HttpPost]
-		public async Task<IActionResult> Create(string userId ,string name, string address,string phone, string email)
+		public async Task<IActionResult> Create(string userId ,string name, string address,string phoneNumber, string email)
         {
 			//var orderEntity = vm.Adapt<OrderDTO>();
 			var orderEntity = new OrderDTO();
@@ -75,7 +75,7 @@ namespace ECommerceWebsite.Controllers
 			{
 				orderEntity.address = "N/A";
 			}
-			orderEntity.phoneNumber = phone;
+			orderEntity.phoneNumber = phoneNumber;
 			orderEntity.email = email;
 			var cart = await getCart();
 			orderEntity.items = new List<CartItemDTO>();
@@ -90,6 +90,7 @@ namespace ECommerceWebsite.Controllers
 			}
 			orderEntity.total = cart.Sum(x => x.price * x.quantity);
             await serviceManager.OrderService.CreateAsync(orderEntity);
+			await serviceManager.CartService.DeleteAsync(ObjectId.Parse(userId));
             return RedirectToAction("History");
         }
 
@@ -106,6 +107,7 @@ namespace ECommerceWebsite.Controllers
 		private async Task<List<CartItemViewModel>> getCart()
 		{
 			var cart = await serviceManager.CartService.GetByIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+			
 			List<CartItemViewModel> items = new List<CartItemViewModel>();
 			foreach (var item in cart.items)
 			{
