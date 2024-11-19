@@ -1,13 +1,13 @@
-﻿@model IEnumerable<ECommerceWebsite.Models.OrderDetailViewModel>
+﻿@model OrderDetailViewModel
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
+   @*  <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.orderId)
+                @Html.DisplayNameFor(model => model.orders[0].userId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.OrderDate)
@@ -35,21 +35,15 @@
             </th>
             <th></th>
         </tr>
-    </thead>
+    </thead> *@
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.orders) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.orderId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.userId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.paymentId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.name)
