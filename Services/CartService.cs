@@ -62,6 +62,7 @@ namespace Services
 				foreach (var item in cartEntity.items) 
 				{ 
 					var cartItem = new CartItemDTO();
+					cartItem.productName = item.productName;
 					cartItem.productId = item.productId.ToString();
 					cartItem.quantity = item.quantity;
 					cartItem.price = item.price;
@@ -86,6 +87,7 @@ namespace Services
 				cartEntity.items.Add(new CartItem
 				{
 					productId = ObjectId.Parse(item.productId),
+					productName = item.productName,
 					quantity = item.quantity,
 					price = item.price
 				});
