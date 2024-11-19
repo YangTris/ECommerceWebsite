@@ -69,9 +69,15 @@
         }
 
         quantityElement.textContent = newQuantity;
+
+        // Vô hiệu hóa nút giảm khi số lượng <= 1
+        const minusButton = cartItem.querySelector('.quantity-btn:first-child');
+        minusButton.disabled = newQuantity <= 1;
+
         updateTotalPrice();
         showNotification(`Updated quantity for product ID ${productId} to ${newQuantity}`);
     }
+
 
     function updateTotalPrice() {
         let total = 0;
@@ -138,18 +144,19 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        const quantityElements = document.querySelectorAll('.quantity-value');
-        quantityElements.forEach(element => {
-            const quantity = parseInt(element.textContent);
-            const minusButton = element.parentElement.querySelector('.quantity-btn:first-child');
+        const cartItems = document.querySelectorAll('.cart-item');
+
+        cartItems.forEach(cartItem => {
+            const quantityElement = cartItem.querySelector('.quantity-value');
+            const minusButton = cartItem.querySelector('.quantity-btn:first-child');
+            const quantity = parseInt(quantityElement.textContent);
+
+            // Vô hiệu hóa nút giảm nếu số lượng <= 1
             minusButton.disabled = quantity <= 1;
         });
 
-        const cartItems = document.querySelectorAll('.cart-item');
-        if (cartItems.length === 0) {
-            document.getElementById('cart-total').textContent = '0$';
-        }
-
         updateCartCount();
+        updateTotalPrice();
     });
+
 </script>
