@@ -1,80 +1,4 @@
-﻿@* @model ECommerceWebsite.Models.OrderViewModel
-
-<div>
-    <h4>OrderViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.userId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.userId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.phoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.phoneNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.email)
-        </dd>
-        @foreach (var item in Model.items)
-        {
-        <div class="cart-item d-flex align-items-center mb-3 position-relative" id="cart-item-@item.productId">
-            <img src="~/Assets/Banner.jpg" alt="Product" class="cart-item-image me-3">
-            <div class="cart-item-details flex-grow-1">
-                <h6 class="cart-item-title mb-0">Name</h6>
-                <p class="cart-item-id text-muted small mb-0">ID: @Html.DisplayFor(modelItem => item.productId)</p>
-                <div class="d-flex justify-content-between align-items-center mt-2">
-                    <div class="cart-item-price" data-price="@item.price">@Html.DisplayFor(modelItem => item.price)$</div>
-                    <div class="cart-item-price" data-price="@item.price">Quantity: @Html.DisplayFor(modelItem => item.quantity)</div>
-                </div>
-
-            </div>
-            <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Remove" style="font-size: 0.8rem;" onclick="removeCartItem(@item.productId)"></button>
-        </div>
-        }
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.total)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.total)
-        </dd>
-        <form method="post" asp-controller="Order" asp-action="Create" asp-route-vm="@Model.address">
-            <button type="submit" id="blue-button-card">
-                Payout
-            </button>
-        </form>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div> *@
-
-@model ECommerceWebsite.Models.OrderViewModel
+﻿@model ECommerceWebsite.Models.OrderViewModel
 
 @{
     Layout = "~/Views/Shared/_OrderLayout.cshtml";
@@ -82,56 +6,61 @@
 
 <div class="order-page-body">
     <div class="order-page-container">
-        <h4 class="order-page-title">Order Summary</h4>
+        <h4 class="order-page-title">Order Details</h4>
         <hr />
 
-        <dl class="row order-page-details">
-            <dt class="col-sm-4">OrderDate:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderDate)</dd>
+        <form method="post" asp-controller="Order" asp-action="UpdateOrder">
+            <dl class="row order-page-details">
+                <dt class="col-sm-4">OrderDate:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderDate)</dd>
 
-            <dt class="col-sm-4">ID:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.userId)</dd>
+                <dt class="col-sm-4">ID:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.userId)</dd>
 
-            <dt class="col-sm-4">Name:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.name)</dd>
+                <dt class="col-sm-4">Name:</dt>
+                <dd class="col-sm-8">
+                    @Html.TextBoxFor(model => model.name, new { @class = "form-control", placeholder = "Enter your name" })
+                </dd>
 
-            <dt class="col-sm-4">Address:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.address)</dd>
+                <dt class="col-sm-4">Address:</dt>
+                <dd class="col-sm-8">
+                    @Html.TextBoxFor(model => model.address, new { @class = "form-control", placeholder = "Enter your address" })
+                </dd>
 
-            <dt class="col-sm-4">PhoneNumber:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.phoneNumber)</dd>
+                <dt class="col-sm-4">PhoneNumber:</dt>
+                <dd class="col-sm-8">
+                    @Html.TextBoxFor(model => model.phoneNumber, new { @class = "form-control", placeholder = "Enter your phone number" })
+                </dd>
 
-            <dt class="col-sm-4">Email:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.email)</dd>
-        </dl>
+                <dt class="col-sm-4">Email:</dt>
+                <dd class="col-sm-8">
+                    @Html.TextBoxFor(model => model.email, new { @class = "form-control", placeholder = "Enter your email" })
+                </dd>
+            </dl>
 
-        <h5 class="order-section-title">Order Items</h5>
-        <div class="order-items-list">
-            @foreach (var item in Model.items)
-            {
-                <div class="order-item">
-                    <img src="~/Assets/Banner.jpg" alt="Product" class="order-item-image">
-                    <div class="order-item-details">
-                        <p class="order-item-info">ID: @item.productId</p>
-                        <p class="order-item-info">Price: $@item.price</p>
-                        <p class="order-item-info">Quantity: @item.quantity</p>
+            <h5 class="order-section-title">Order Items</h5>
+            <div class="order-items-list">
+                @foreach (var item in Model.items)
+                {
+                    <div class="order-item">
+                        <img src="~/Assets/Banner.jpg" alt="Product" class="order-item-image">
+                        <div class="order-item-details">
+                            <p class="order-item-info">ID: @item.productId</p>
+                            <p class="order-item-info">Price: $@item.price</p>
+                            <p class="order-item-info">Quantity: @item.quantity</p>
+                        </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
 
-        <dl class="row order-page-details order-spacing-small">
-            <dt class="col-sm-4">Total:</dt>
-            <dd class="col-sm-8">$@Html.DisplayFor(model => model.total)</dd>
-        </dl>
+            <dl class="row order-page-details order-spacing-small">
+                <dt class="col-sm-4">Total:</dt>
+                <dd class="col-sm-8">$@Html.DisplayFor(model => model.total)</dd>
+            </dl>
 
-        <form method="post" asp-controller="Order" asp-action="Create" asp-route-vm="@Model.address">
-            <button type="submit" class="order-btn-primary">Payout</button>
+            <div class="order-actions">
+                <button type="submit" class="order-btn-primary">Payout</button>
+            </div>
         </form>
-
-        <div class="order-actions">
-            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "order-btn-secondary" })
-            <a asp-action="Index" class="order-btn-secondary">Back to List</a>
-        </div>
     </div>
 </div>
