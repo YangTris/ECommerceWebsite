@@ -44,9 +44,9 @@
         </div>
         <div class="d-flex flex-column gap-2">
             <div class="d-flex gap-2">
-                <button class="btn btn-outline-secondary w-50" id="saveCartButton" onclick="saveCart()">Save</button>
+                <button class="btn btn-outline-secondary w-100" id="saveCartButton" onclick="saveCart()">Save</button>
                 <form method="post" asp-controller="Cart" asp-action="ClearCart">
-                    <button type="submit" class="btn btn-outline-danger w-50" id="clearCartButton" onclick="clearCart()">Clear Cart</button>
+                    <button type="submit" class="btn btn-outline-danger w-100" id="clearCartButton" onclick="clearCart()">Clear Cart</button>
                 </form>
             </div>
              <form method="get" asp-controller="Order" asp-action="Create">

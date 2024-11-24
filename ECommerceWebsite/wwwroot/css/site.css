@@ -2007,6 +2007,110 @@ label {
     color:white;
 }
 
+/*ORDER HISTORY*/
+.order-history-page-body {
+    max-width: 100%;
+    padding: 125px 15px 50px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+}
+
+.order-history-page-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+.order-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.order-history-cell {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.order-history-table th.order-history-cell {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.order-history-table tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+
+.btn-create-order {
+    display: inline-block;
+    float: right;
+    margin-bottom: 15px;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-create-order:hover {
+    background-color: rgb(102, 136, 240);
+    color:white;;
+}
+
+.btn-edit-order {
+    background-color: #ffc107;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit-order:hover {
+    background-color: #e0a800;
+}
+
+.btn-details-order {
+    background-color: #17a2b8;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-details-order:hover {
+    background-color: #117a8b;
+}
+
+.btn-delete-order {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete-order:hover {
+    background-color: #c82333;
+}
+
+
 /* FOOTER */
 footer {
     background-color: #d9e5f4;
