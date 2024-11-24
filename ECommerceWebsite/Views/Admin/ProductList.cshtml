@@ -65,7 +65,7 @@
                     <td>@Html.DisplayFor(modelItem => item.category)</td>
                     <td>@Html.DisplayFor(modelItem => item.price)$</td>
                     <td>
-                        <a href="@Url.Action("ProductEdit")" class="btn btn-warning btn-sm">
+                        <a asp-action="ProductEdit" asp-route-id="@item.productId" method="POST" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
                         <form asp-action="ProductDelete" asp-route-id="@item.productId" method="POST">
