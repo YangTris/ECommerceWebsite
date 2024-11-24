@@ -59,15 +59,11 @@
  *@
 
 <div id="user-index-container">
-	<h1>User Account</h1>
-
-	<p>
-		<a asp-action="Create" class="user-create-button">Create New</a>
-	</p>
-
+	<h1>User Account List</h1>
 	<table class="user-table">
 		<thead>
 			<tr>
+				<th>@Html.DisplayNameFor(model => model.Id)</th>
 				<th>@Html.DisplayNameFor(model => model.Name)</th>
 				<th>@Html.DisplayNameFor(model => model.Email)</th>
 				<th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
@@ -78,6 +74,7 @@
 			@foreach (var item in Model)
 			{
 				<tr>
+					<td>@Html.DisplayFor(modelItem => item.Id)</td>
 					<td>@Html.DisplayFor(modelItem => item.Name)</td>
 					<td>@Html.DisplayFor(modelItem => item.Email)</td>
 					<td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>

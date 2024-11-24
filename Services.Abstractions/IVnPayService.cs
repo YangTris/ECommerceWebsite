@@ -9,7 +9,7 @@ namespace Services.Abstractions
 {
 	public interface IVnPayService
 	{
-		string CreatePaymentUrl(HttpContext context);
+		string CreatePaymentUrl(HttpContext context,long amount);
 		/*string CreatePaymentUrl(HttpContext context, VnPaymentRequestModel model);
 		PaymentResponseModel PaymentExecute(IQueryCollection collections);*/
 	}

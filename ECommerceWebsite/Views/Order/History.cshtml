@@ -3,9 +3,6 @@
 <div class="order-history-page-body">
     <div class="order-history-page-container">
         <h2 class="text-center mb-4">Order History</h2>
-        <div class="text-end mb-3">
-            <a asp-action="Create" class="btn-create-order">Create New Order</a>
-        </div>
         <table class="order-history-table">
             <thead>
                 <tr>
@@ -29,6 +26,9 @@
                         <td class="order-history-cell">@Html.DisplayFor(modelItem => item.phoneNumber)</td>
                         <td class="order-history-cell">@Html.DisplayFor(modelItem => item.email)</td>
                         <td class="order-history-cell">@Html.DisplayFor(modelItem => item.total)$</td>
+                        <td class="order-history-cell">
+                           <a asp-action="Detail" asp-route-id="@item.orderId" class="btn btn-primary">View</a>
+                        </td>
                     </tr>
                 }
             </tbody>

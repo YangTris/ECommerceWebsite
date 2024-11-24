@@ -14,5 +14,6 @@ namespace ECommerceWebsite.Models
 		public string email { get; set; }
 		public decimal total { get; set; }
 		public List<CartItemViewModel> items { get; set; }
+		public string orderId { get; set; }
 	}
 }

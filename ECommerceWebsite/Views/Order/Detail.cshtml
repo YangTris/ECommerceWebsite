@@ -1,15 +1,18 @@
 ﻿@model ECommerceWebsite.Models.OrderViewModel
 
 @{
-    Layout = "~/Views/Shared/_OrderLayout.cshtml";
+    if(User.IsInRole("Admin"))
+	{
+		Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	}
+	else if(User.IsInRole("Customer"))
+        Layout = "~/Views/Shared/_OrderLayout.cshtml";
 }
 
 <div class="order-page-body">
     <div class="order-page-container">
         <h4 class="order-page-title">Order Details</h4>
         <hr />
-
-        <form method="post" asp-controller="Order" asp-action="Create">
             <dl class="row order-page-details">
                 <dt class="col-sm-4">OrderDate:</dt>
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.OrderDate)</dd>
@@ -18,24 +21,16 @@
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.userId)</dd>
 
                 <dt class="col-sm-4">Name:</dt>
-                <dd class="col-sm-8">
-                    @Html.TextBoxFor(model => model.name, new { @class = "form-control", placeholder = "Enter your name" })
-                </dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.name)</dd>
 
                 <dt class="col-sm-4">Address:</dt>
-                <dd class="col-sm-8">
-                    @Html.TextBoxFor(model => model.address, new { @class = "form-control", placeholder = "Enter your address" })
-                </dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.address)</dd>
 
-                <dt class="col-sm-4">PhoneNumber:</dt>
-                <dd class="col-sm-8">
-                    @Html.TextBoxFor(model => model.phoneNumber, new { @class = "form-control", placeholder = "Enter your phone number" })
-                </dd>
+                <dt class="col-sm-4">Phone:</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.phoneNumber)</dd>
 
                 <dt class="col-sm-4">Email:</dt>
-                <dd class="col-sm-8">
-                    @Html.TextBoxFor(model => model.email, new { @class = "form-control", placeholder = "Enter your email" })
-                </dd>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.email)</dd>
             </dl>
 
             <h5 class="order-section-title">Order Items</h5>
@@ -66,8 +61,17 @@
             </dl>
             <input name="userId" value="@Model.userId" hidden />
             <div class="order-actions">
-                <button type="submit" class="order-btn-primary">Payout</button>
+            @{
+                if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Order" asp-action="Index" class="order-btn-primary">Go Back</a>
+                }
+                else if (User.IsInRole("Customer"))
+                {
+                    <a asp-controller="Order" asp-action="History" class="order-btn-primary">Go Back</a>
+                }
+            }
+               
             </div>
-        </form>
     </div>
 </div>

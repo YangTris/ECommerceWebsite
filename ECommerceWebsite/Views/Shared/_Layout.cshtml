@@ -36,6 +36,10 @@
 									<u>@User.Identity.Name</u>
 								</a>
 								<div class="dropdown-menu">
+									@if(User.IsInRole("Admin"))
+									{
+										<a asp-controller="Admin" asp-action="ProductList" class="order-button">Admin<i class="bi bi-person-circle"></i></a>
+									}
 									<a asp-controller="Order" asp-action="History" class="order-button">History<i class="bi bi-bag-check"></i></a>
 									<a asp-controller="Account" asp-action="Logout" class="logout-button">Logout<i class="bi bi-box-arrow-in-right"></i></a>
 								</div>

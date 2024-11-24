@@ -23,6 +23,7 @@ namespace ECommerceWebsite.Controllers
 			foreach (IdentityError error in result.Errors)
 				ModelState.AddModelError("", error.Description);
 		}
+		[Authorize(Roles="Admin")]
 		public IActionResult Index()
 		{
 			List<UserViewModel> model = new();

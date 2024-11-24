@@ -27,7 +27,7 @@ namespace Services
 			_repositoryManager = repositoryManager;
 		}
 
-		public string CreatePaymentUrl(HttpContext context)
+		public string CreatePaymentUrl(HttpContext context, long amount)
 		{
 			// Get Config Info
 			string vnp_Returnurl = "https://localhost:44346/Payment/PaymentSuccess";//ConfigurationManager.AppSettings["vnp_Returnurl"]; // URL for results return
@@ -39,7 +39,7 @@ namespace Services
 			VnPayment order = new VnPayment
 			{
 				OrderId = DateTime.Now.Ticks, // Unique transaction ID
-				Amount = 100000, // Example amount: 100,000 VND
+				Amount = amount, // Example amount: 100,000 VND
 				Status = "0", // Pending payment
 				CreatedDate = DateTime.Now
 			};

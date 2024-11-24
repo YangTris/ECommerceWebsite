@@ -21,25 +21,15 @@ namespace ECommerceWebsite.Controllers
 			this.serviceManager = serviceManager;
 			this.userManager = userManager;
 		}
+
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> Index()
 		{
-			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-			var itemList = await getCart();
-			var viewmodel = new OrderViewModel();
-			var user = await userManager.GetUserAsync(User);
-			
-			viewmodel.OrderDate = DateTime.Now.ToString("dd/MM/yyyy");
-			viewmodel.userId = userId;
-			viewmodel.name = user.UserName;
-			viewmodel.phoneNumber = user.PhoneNumber;
-			viewmodel.email = user.Email;
-			viewmodel.address = "";
-			viewmodel.items = itemList;
-			viewmodel.total = itemList.Sum(x => x.price * x.quantity);
-			viewmodel.cartViewModel = itemList;
-
-			return View("Index",viewmodel);
-		}
+			var order = await serviceManager.OrderService.GetAllAsync();
+            var viewmodel = new OrderDetailViewModel();
+            viewmodel.orders = order.Adapt<List<OrderViewModel>>();
+            return View(viewmodel);
+        }
 
 		[HttpGet]
 		public async Task<IActionResult> Create()
@@ -61,7 +51,6 @@ namespace ECommerceWebsite.Controllers
 
             return View(viewmodel);
         }
-
         [HttpPost]
 		public async Task<IActionResult> Create(string userId ,string name, string address,string phoneNumber, string email)
         {
@@ -86,13 +75,16 @@ namespace ECommerceWebsite.Controllers
 					productName = item.name,
 					productId = item.productId,
 					quantity = item.quantity,
-					price = item.price
+					price = item.price,
+					imgUrl = item.imgUrl
 				});
 			}
-			orderEntity.total = cart.Sum(x => x.price * x.quantity);
+			decimal total = cart.Sum(x => x.price * x.quantity);
+			orderEntity.total = total;
             await serviceManager.OrderService.CreateAsync(orderEntity);
 			await serviceManager.CartService.DeleteAsync(ObjectId.Parse(userId));
-            return RedirectToAction("History");
+            string paymentUrl = serviceManager.VnPayService.CreatePaymentUrl(HttpContext, Convert.ToInt64(total));
+            return Redirect(paymentUrl);
         }
 
 		public async Task<IActionResult> History()
@@ -105,7 +97,38 @@ namespace ECommerceWebsite.Controllers
 			return View(viewmodel);
 		}
 
-		private async Task<List<CartItemViewModel>> getCart()
+        [HttpGet]
+        public async Task<IActionResult> Detail(string id)
+        {
+			var order = await serviceManager.OrderService.GetByIdAsync(ObjectId.Parse(id));
+            var itemList = await getCart();
+            var viewmodel = new OrderViewModel();
+
+			viewmodel.OrderDate = order.OrderDate.ToString();
+            viewmodel.userId = order.userId;
+            viewmodel.name = order.name;
+            viewmodel.phoneNumber = order.phoneNumber;
+            viewmodel.email = order.email;
+            viewmodel.address = order.address;
+			viewmodel.items = new();
+            foreach (var item in order.items)
+            {
+                viewmodel.items.Add(new CartItemViewModel()
+                {
+                    productId = item.productId,
+                    quantity = item.quantity,
+                    price = item.price,
+                    name = item.productName,
+                    imgUrl = item.imgUrl
+                });
+            }
+			viewmodel.total = order.total;
+            viewmodel.cartViewModel = itemList;
+
+            return View(viewmodel);
+        }
+
+        private async Task<List<CartItemViewModel>> getCart()
 		{
 			var cart = await serviceManager.CartService.GetByIdAsync(ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 			List<CartItemViewModel> items = new List<CartItemViewModel>();

@@ -73,7 +73,7 @@ namespace ECommerceWebsite.Controllers
                     if (result.Succeeded)
                     {
                         if (User.IsInRole("Admin"))
-                            return Redirect("/Admin/Index");
+                            return Redirect("/Admin/ProductList");
                         return Redirect(returnurl ?? "/");
                     }
                 }
