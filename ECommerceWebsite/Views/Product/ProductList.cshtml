@@ -134,7 +134,14 @@
 					<li class="product-card">
 						<a asp-action="ProductDetails" asp-route-productId="@item.productId" class="product-link">
 							<div class="product-image-container">
-								<img src="~/Assets/watch.png" />
+								@if (String.IsNullOrEmpty(item.imageUrl))
+								{
+									<img src="~/Assets/default_img.jpg" class="img-thumbnail" />
+								}
+								else
+								{
+									<img src="data:image/png;base64,@item.imageUrl" class="img-thumbnail" />
+								}
 							</div>
 							<div class="product-text-container">
 								<h1>@Html.DisplayFor(modelItem => item.name)</h1>
