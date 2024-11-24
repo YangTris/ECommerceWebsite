@@ -87,6 +87,10 @@
             <div class="sign-up-link">
                 You don't have account? <a href="../Account/SignUp">Sign up!</a>
             </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="create-message bg-danger text-white">@ViewBag.Message</div>
+            }
             <button type="submit" class="login-button">Sign in</button>
         </form>
     </div>

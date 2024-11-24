@@ -20,7 +20,10 @@ namespace ECommerceWebsite.Controllers
         private void Errors(IdentityResult result)
         {
             foreach (IdentityError error in result.Errors)
+            {
                 ModelState.AddModelError("", error.Description);
+                ViewBag.Message = error.Description;
+            } 
         }
         public IActionResult Login()
         {
@@ -52,7 +55,6 @@ namespace ECommerceWebsite.Controllers
                 }
                 else
                     Errors(result);
-
             }
             return View();
         }
@@ -76,9 +78,9 @@ namespace ECommerceWebsite.Controllers
                     }
                 }
                 ModelState.AddModelError(nameof(email), "Login Failed: Invalid Email or Password");
+                ViewBag.Message = "Invalid Email or Password";
             }
-
-            return RedirectToAction("Login");
+            return View();
         }
 
         [Authorize]

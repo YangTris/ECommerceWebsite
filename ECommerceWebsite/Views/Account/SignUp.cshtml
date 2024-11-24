@@ -86,7 +86,16 @@
             </div>
             @if (ViewBag.Message != null)
             {
-                <div class="create-message bg-success text-white">@ViewBag.Message</div>
+                @if (ViewBag.Message == "User Created Successfully")
+                {
+                    <div class="create-message bg-success text-white">
+                        ViewBag.Message
+                    </div>
+                }
+                else
+                {
+                    <div class="create-message bg-danger text-white">@ViewBag.Message</div>
+                }
             }
             <button type="submit" class="signup-button">Create Account</button>
         </form>
