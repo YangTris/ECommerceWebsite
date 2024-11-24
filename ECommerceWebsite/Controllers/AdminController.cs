@@ -3,6 +3,7 @@ using ECommerceWebsite.Models;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Services.Abstractions;
 using Shared;
 
@@ -76,7 +77,7 @@ namespace ECommerceWebsite.Controllers
                 product.description,
 				product.category,
                 product.price,
-                "product.imageUrl",
+                product.imageUrl,
                 product.timestamp
             );
             //Console.WriteLine(product.imageUrl.ToString());
@@ -85,10 +86,10 @@ namespace ECommerceWebsite.Controllers
         }
 
 		[HttpPost]
-		public IActionResult ProductDelete()
+		public async Task<IActionResult> ProductDelete(string id)
 		{
-			Console.WriteLine("get productAdd");
-			return View("ProductAdd");
+			await _serviceManager.ProductService.DeleteAsync(ObjectId.Parse(id));
+			return RedirectToAction("ProductList", "Admin");
 		}
 	}
 }

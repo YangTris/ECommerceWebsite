@@ -70,6 +70,8 @@ namespace ECommerceWebsite.Controllers
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, password, false, false);
                     if (result.Succeeded)
                     {
+                        if (User.IsInRole("Admin"))
+                            return Redirect("/Admin/ProductList");
                         return Redirect(returnurl ?? "/");
                     }
                 }

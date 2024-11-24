@@ -68,9 +68,11 @@
                         <a href="@Url.Action("ProductEdit")" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
-                        <a href="@Url.Action("Delete")" class="btn btn-danger btn-sm">
-                            <i class="bi bi-trash-fill"></i>
-                        </a>
+                        <form asp-action="ProductDelete" asp-route-id="@item.productId" method="POST">
+                            <a href="javascript:;" onclick="this.parentNode.submit()" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash-fill"></i>
+                                </a>
+                        </form>
                     </td>
                 </tr>
             }
