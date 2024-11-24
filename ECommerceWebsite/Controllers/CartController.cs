@@ -34,7 +34,8 @@ namespace ECommerceWebsite.Controllers
 						productId,
 						product.name,
 						quantity,
-						product.price
+						product.price,
+						product.imageUrl
 					)
 					},
 					product.price * quantity
@@ -54,7 +55,8 @@ namespace ECommerceWebsite.Controllers
 						productId,
 						product.name,
 						quantity,
-						product.price
+						product.price,
+						product.imageUrl
 					));
 				}
 				await _serviceManager.CartService.UpdateAsync(userId, userCart);
@@ -63,7 +65,7 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpPost]
-		public async Task<JsonResult> DeleteItem(string id)
+		public async Task<IActionResult> DeleteItem(string id)
 		{
 			var userId = ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			var userCart = await _serviceManager.CartService.GetByIdAsync(userId);
@@ -73,9 +75,8 @@ namespace ECommerceWebsite.Controllers
 				userCart.items.Remove(item);
 				await _serviceManager.CartService.UpdateAsync(userId, userCart);
 			}
-			//return RedirectToAction("Index", "Cart");
-			return Json("Response from Delete");
-		}
+            return RedirectToAction("ProductList", "Product");
+        }
 
 		[HttpPost]
 		public async Task<IActionResult> ClearCart()

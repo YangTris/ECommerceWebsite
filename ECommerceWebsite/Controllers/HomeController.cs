@@ -49,7 +49,8 @@ namespace ECommerceWebsite.Controllers
 						productId = item.productId,
 						quantity = item.quantity,
 						price = item.price,
-						name = item.productName
+						name = item.productName,
+						imgUrl = item.imgUrl
 					});
 				}
 			return items;

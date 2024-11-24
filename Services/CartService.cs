@@ -66,6 +66,7 @@ namespace Services
 					cartItem.productId = item.productId.ToString();
 					cartItem.quantity = item.quantity;
 					cartItem.price = item.price;
+					cartItem.imgUrl = item.imgUrl;
 					cart.items.Add(cartItem);
 				}
 			return cart;
@@ -89,7 +90,8 @@ namespace Services
 					productId = ObjectId.Parse(item.productId),
 					productName = item.productName,
 					quantity = item.quantity,
-					price = item.price
+					price = item.price,
+					imgUrl = item.imgUrl
 				});
 			}
 			cartEntity.total = cartEntity.items.Sum(x => x.price * x.quantity);
