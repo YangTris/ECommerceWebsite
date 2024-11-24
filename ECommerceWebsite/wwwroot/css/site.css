@@ -2110,7 +2110,21 @@ label {
     background-color: #c82333;
 }
 
+.admin-logout-btn {
+    text-decoration: none;
+    color: rgb(64, 64, 64);
+    font-weight: 500;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    transition: 0.3s ease-in-out;
+    position:absolute;
+    bottom: 39px;
+    right: 150px;
+}
 
+.admin-logout-btn i{
+    font-size: 20px;
+}
 /* FOOTER */
 footer {
     background-color: #d9e5f4;
