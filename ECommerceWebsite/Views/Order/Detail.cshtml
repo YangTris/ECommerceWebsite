@@ -64,11 +64,11 @@
             @{
                 if (User.IsInRole("Admin"))
                 {
-                    <a asp-controller="Order" asp-action="Index" class="order-btn-primary">Go Back</a>
+                    <a asp-controller="Order" asp-action="Index" class="goback-btn">Go Back</a>
                 }
                 else if (User.IsInRole("Customer"))
                 {
-                    <a asp-controller="Order" asp-action="History" class="order-btn-primary">Go Back</a>
+                    <a asp-controller="Order" asp-action="History" class="goback-btn">Go Back</a>
                 }
             }
                

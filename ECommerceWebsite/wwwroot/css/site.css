@@ -2065,7 +2065,7 @@ label {
 
 .btn-create-order:hover {
     background-color: rgb(102, 136, 240);
-    color:white;;
+    color:white;
 }
 
 .btn-edit-order {
@@ -2124,6 +2124,22 @@ label {
 
 .admin-logout-btn i{
     font-size: 20px;
+}
+
+.goback-btn {
+    text-decoration: none;
+    background-color: #007bff;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.goback-btn:hover {
+    background-color: rgb(102, 136, 240);
+    color:white;
 }
 /* FOOTER */
 footer {
