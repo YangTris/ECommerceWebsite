@@ -22,7 +22,11 @@
 ```
 git clone https://github.com/YangTris/ECommerceWebsite
 ```
-
+## Wanna Try?
+| Admin account   | Client account |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| admin@gmail.com     | id.edumail@gmail.com | 
+| P@ssw0rd   | P@ssw0rd | 
 
 ## Screenshots
 ### Training Phase
@@ -44,6 +48,6 @@ Success             |  Fail
 
 ## Report PDF
 
-[VnPay](ReportOSSD.pdf)
+[VnPay](OnionASP.NET.pdf)
 
 
