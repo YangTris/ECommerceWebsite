@@ -3,6 +3,7 @@ using ECommerceWebsite.Models;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using MongoDB.Bson;
 using Services.Abstractions;
 using Shared;
@@ -71,11 +72,11 @@ namespace ECommerceWebsite.Controllers
 		}
 
         [HttpGet]
-        public IActionResult ProductEdit()
+        public async Task<IActionResult> ProductEdit(ObjectId productId)
         {
-            Console.WriteLine("get productedit");
-            return View("ProductEdit");
-        }
+			var product = await _serviceManager.ProductService.GetByIdAsync(productId);
+			return View("ProductEdit", product.Adapt<ProductViewModel>());
+		}
 
         [HttpPost]
         public async Task<IActionResult> ProductEdit(string id, ProductViewModel product, IFormFile Image)
