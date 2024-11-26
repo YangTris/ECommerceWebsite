@@ -28,7 +28,12 @@ namespace Persistence.Repositories
 			return await _dbContext.Products.FirstOrDefaultAsync(x => x.productId == productId, cancellationToken);
 		}
 
-		public void Insert(Product product)
+        public async Task<IEnumerable<Product>> GetByQuery(string query, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Products.Where(x=>x.name.Contains("query")).ToListAsync(cancellationToken);
+        }
+
+        public void Insert(Product product)
 		{
 			_dbContext.Products.Add(product);
 		}

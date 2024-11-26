@@ -32,16 +32,16 @@
                                     <h6 class="cart-item-title mb-0">@item.name</h6>
                                     <p class="cart-item-id text-muted small mb-0">ID: @item.productId</p>
                                     <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="cart-item-price" data-price="@item.price">@item.price$</div>
+                                        <div class="cart-item-price" data-price="@item.price">Price: @item.price$</div>
                                         <div class="cart-item-quantity">
                                         @*<button class="btn btn-sm btn-outline-secondary quantity-btn" onclick="updateQuantity('@item.productId', -1)">-</button>*@
-                                            <span class="mx-2 quantity-value">@item.quantity</span>
+                                            <span class="mx-2 quantity-value">Quantity: @item.quantity</span>
                                             @*<button class="btn btn-sm btn-outline-secondary quantity-btn" onclick="updateQuantity('@item.productId', 1)">+</button>*@
                                         </div>
                                     </div>
                                 </div>
                              
-                            <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Remove" style="font-size: 0.8rem;" onclick="removeCartItem('@item.productId')"></button>
+                            <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Remove" style="font-size: 0.8rem;" onclick="removeCartItem('@item.productId','@item.name')"></button>
 
                             </div>
                     }
@@ -62,9 +62,8 @@
                 </form>
             </div>*@
              <form method="get" asp-controller="Order" asp-action="Create">
-               
+                <button type="submit" class="btn btn-primary w-100 bg-blue mt-2" onclick="confirmPayout()">Payout</button>
              </form>
-            <button type="button" class="btn btn-primary w-100 bg-blue mt-2" onclick="confirmPayout()">Payout</button>
         </div>
     </div>
 
@@ -140,12 +139,12 @@
         }
     }
 
-    function removeCartItem(productId) {
+    function removeCartItem(productId,productName) {
         const cartItem = document.getElementById(`cart-item-${productId}`);
         cartItem.remove();
         updateTotalPrice();
         updateCartCount();
-        showNotification(`Product with ID ${productId} removed from the cart.`);
+        showNotification(`Product ${productName} removed from the cart.`);
 
         const cartItems = document.querySelectorAll('.cart-item');
         if (cartItems.length === 0) {

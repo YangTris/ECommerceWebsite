@@ -29,92 +29,7 @@
 		</div>
 	</div><!--END TOP SECTION-->
 	<!--PRODUCT CATEGORIES-->
-	<div id="product-category-container">
-		<div id="product-category-text">
-			<span class="blue-line"></span>
-			<span class="section-category-text">Categories</span>
-		</div>
-		<div id="product-category-wrapper">
-			<div class="product-category">
-				<div class="product-category-image-section">
-					<img src="~/Assets/product category/all.png" alt="All Categories" />
-				</div>
-				<div class="product-category-desc-section">
-					<span class="product-category-type">
-						All
-					</span>
-					<span class="product-category-number">
-						@Html.DisplayFor(model => model.countProduct) Items
-					</span>
-				</div>
-			</div>
-			<div class="product-category">
-				<div class="product-category-image-section">
-					<img src="~/Assets/product category/watch.png" alt="SmartWatch Categories" />
-				</div>
-				<div class="product-category-desc-section">
-					<span class="product-category-type">
-						SmartWatch
-					</span>
-					<span class="product-category-number">
-						60 items
-					</span>
-				</div>
-			</div>
-			<div class="product-category">
-				<div class="product-category-image-section">
-					<img src="~/Assets/product category/laptop.png" alt="Laptop Categories" />
-				</div>
-				<div class="product-category-desc-section">
-					<span class="product-category-type">
-						Laptop
-					</span>
-					<span class="product-category-number">
-						60 items
-					</span>
-				</div>
-			</div>
-			<div class="product-category">
-				<div class="product-category-image-section">
-					<img src="~/Assets/product category/phone.png" alt="Phone Categories" />
-				</div>
-				<div class="product-category-desc-section">
-					<span class="product-category-type">
-						Phone
-					</span>
-					<span class="product-category-number">
-						60 items
-					</span>
-				</div>
-			</div>
-			<div class="product-category">
-				<div class="product-category-image-section">
-					<img src="~/Assets/product category/ipad.png" alt="Tablet Categories" />
-				</div>
-				<div class="product-category-desc-section">
-					<span class="product-category-type">
-						Tablet
-					</span>
-					<span class="product-category-number">
-						60 items
-					</span>
-				</div>
-			</div>
-			<div class="product-category">
-				<div class="product-category-image-section">
-					<img src="~/Assets/product category/headphone.png" alt="Tablet Categories" />
-				</div>
-				<div class="product-category-desc-section">
-					<span class="product-category-type">
-						Headphone
-					</span>
-					<span class="product-category-number">
-						60 items
-					</span>
-				</div>
-			</div>
-		</div>
-	</div><!--END PRODUCT CATEGORIES-->
+
 	<!--PRODUCT CARDS-->
 	<div class="product-section" id="product-section-all">
 		<div class="product-section-top-container">
@@ -126,6 +41,15 @@
 				<h1>Explore Your Favorite</h1>
 			</div>
 		</div>
+
+		<!--SEARCH BAR-->
+		<div id="search-container">
+			<form asp-action="Search" method="get" id="search-form">
+				<input type="text" name="query" placeholder="Search products..." id="search-bar" />
+				<button type="submit" id="search-button">Search</button>
+			</form>
+		</div>
+
 
 		<div class="product-cards-container">
 			<ul>
