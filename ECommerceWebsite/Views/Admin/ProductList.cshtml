@@ -9,24 +9,12 @@
 <div id="admin-productlist-body">
     <h1>Product List</h1>
 
-    <form method="get" action="@Url.Action("Index")" class="form-inline mb-3">
-        <div class="form-group mr-2">
-            <input type="text" id="searchName" name="searchName" value="@ViewBag.SearchName" placeholder="Name" class="form-control" />
-        </div>
-        <div class="form-group mr-2">
-            <input type="text" id="searchCategory" name="searchCategory" value="@ViewBag.SearchCategory" placeholder="Category" class="form-control" />
-        </div>
-        <div class="form-group mr-2">
-            <input type="number" id="minPrice" name="minPrice" value="@ViewBag.MinPrice" placeholder="Min Price" class="form-control" />
-        </div>
-        <div class="form-group mr-2">
-            <input type="number" id="maxPrice" name="maxPrice" value="@ViewBag.MaxPrice" placeholder="Max Price" class="form-control" />
-        </div>
-        <div class="form-group mr-2">
-            <input type="text" id="searchDescription" name="searchDescription" value="@ViewBag.SearchDescription" placeholder="Description" class="form-control" />
-        </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <div id="search-container">
+        <form asp-action="Search" method="get" id="search-form">
+            <input type="text" name="query" placeholder="Search products..." id="search-bar" />
+            <button type="submit" id="search-button">Search</button>
+        </form>
+    </div>
 
     <p>
         <a asp-action="ProductAdd" class="btn btn-primary mb-3">Create New</a>
