@@ -3,6 +3,7 @@ using ECommerceWebsite.Models;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using MongoDB.Bson;
 using Services.Abstractions;
 using Shared;
@@ -24,10 +25,18 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> ProductList()
+		public async Task<IActionResult> ProductList(string query)
 		{
-			var productList = await _serviceManager.ProductService.GetAllAsync();
-			AdminProductViewModel viewModel = new AdminProductViewModel();
+			IEnumerable<ProductDTO> productList = null;
+			if(query == null)
+			{
+                productList = await _serviceManager.ProductService.GetAllAsync();
+            }
+			else
+			{
+				productList = await _serviceManager.ProductService.GetByQuery(query);
+			}
+            AdminProductViewModel viewModel = new AdminProductViewModel();
 			viewModel._products = productList;
 			return View("ProductList",viewModel);
 		}
@@ -63,11 +72,11 @@ namespace ECommerceWebsite.Controllers
 		}
 
         [HttpGet]
-        public IActionResult ProductEdit()
+        public async Task<IActionResult> ProductEdit(ObjectId productId)
         {
-            Console.WriteLine("get productedit");
-            return View("ProductEdit");
-        }
+			var product = await _serviceManager.ProductService.GetByIdAsync(productId);
+			return View("ProductEdit", product.Adapt<ProductViewModel>());
+		}
 
         [HttpPost]
         public async Task<IActionResult> ProductEdit(string id, ProductViewModel product, IFormFile Image)

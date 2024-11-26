@@ -10,7 +10,7 @@
     <h1>Product List</h1>
 
     <div id="search-container">
-        <form asp-action="Search" method="get" id="search-form">
+        <form asp-action="ProductList" method="get" id="search-form">
             <input type="text" name="query" placeholder="Search products..." id="search-bar" />
             <button type="submit" id="search-button">Search</button>
         </form>
@@ -53,7 +53,7 @@
                     <td>@Html.DisplayFor(modelItem => item.category)</td>
                     <td>@Html.DisplayFor(modelItem => item.price)$</td>
                     <td>
-                        <a asp-action="ProductEdit" asp-route-id="@item.productId" method="POST" class="btn btn-warning btn-sm">
+                        <a asp-action="ProductEdit" asp-route-productId="@item.productId" method="POST" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil-fill"></i>
                         </a>
                         <form asp-action="ProductDelete" asp-route-id="@item.productId" method="POST">
