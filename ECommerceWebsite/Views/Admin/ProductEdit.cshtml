@@ -8,7 +8,7 @@
 <div class="product-edit-body">
     <div class="product-edit-container">
         <h2 class="form-title">Edit Product</h2>
-        <form class="product-edit-form" asp-action="ProductEdit" method="post">
+        <form class="product-edit-form" asp-action="ProductEdit" enctype="multipart/form-data" method="post">
             <div class="form-group">
                 <label for="name">Product Name:</label>
                 <input type="text" id="name" name="name" class="form-control" required>
