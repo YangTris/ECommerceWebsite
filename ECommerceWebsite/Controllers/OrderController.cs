@@ -81,6 +81,7 @@ namespace ECommerceWebsite.Controllers
 			}
 			decimal total = cart.Sum(x => x.price * x.quantity);
 			orderEntity.total = total;
+
             await serviceManager.OrderService.CreateAsync(orderEntity);
 			await serviceManager.CartService.DeleteAsync(ObjectId.Parse(userId));
             string paymentUrl = serviceManager.VnPayService.CreatePaymentUrl(HttpContext, Convert.ToInt64(total));

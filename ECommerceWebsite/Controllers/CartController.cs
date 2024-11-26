@@ -65,7 +65,7 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpPost]
-		public async Task<JsonResult> DeleteItem(string id)
+		public async Task<IActionResult> DeleteItem([FromBody] string id)
 		{
 			var userId = ObjectId.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 			var userCart = await _serviceManager.CartService.GetByIdAsync(userId);
@@ -75,7 +75,7 @@ namespace ECommerceWebsite.Controllers
 				userCart.items.Remove(item);
 				await _serviceManager.CartService.UpdateAsync(userId, userCart);
 			}
-            return Json(userCart);
+            return RedirectToAction("ProductList", "Product");
         }
 
 		[HttpPost]
