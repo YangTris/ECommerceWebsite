@@ -20,11 +20,20 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> ProductList()
+		public async Task<IActionResult> ProductList(string query)
 		{
-			var productList = await _serviceManager.ProductService.GetAllAsync();
-			AllProductsViewModel viewModel = new AllProductsViewModel();
-			viewModel.products = productList;
+			IEnumerable<ProductDTO> productList = null;
+            AllProductsViewModel viewModel = new AllProductsViewModel();
+            if (query == null)
+			{
+                productList = await _serviceManager.ProductService.GetAllAsync();
+                viewModel.products = productList;
+			}
+			else
+			{
+
+			}
+			
 			viewModel.countProduct = productList.Count();
 			if (User.Identity.IsAuthenticated)
 			{
