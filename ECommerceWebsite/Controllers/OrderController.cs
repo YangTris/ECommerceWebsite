@@ -79,7 +79,7 @@ namespace ECommerceWebsite.Controllers
 					imgUrl = item.imgUrl
 				});
 			}
-			decimal total = cart.Sum(x => x.price * x.quantity);
+			decimal total = cart.Sum(x => x.price * x.quantity)*24000;
 			orderEntity.total = total;
 
             await serviceManager.OrderService.CreateAsync(orderEntity);
