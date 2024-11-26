@@ -23,10 +23,12 @@
 git clone https://github.com/YangTris/ECommerceWebsite
 ```
 ## Wanna Try?
-| Admin account   | Client account |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| admin@gmail.com     | id.edumail@gmail.com | 
-| P@ssw0rd   | P@ssw0rd | 
+
+Account | Admin | Client | 
+--- | --- | --- |
+User Name | admin@gmail.com     | id.edumail@gmail.com | 
+PassWord | P@ssw0rd   | P@ssw0rd | 
+
 
 ## Screenshots
 ### Training Phase
