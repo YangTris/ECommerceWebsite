@@ -147,5 +147,10 @@ namespace ECommerceWebsite.Controllers
 				}
 			return items;
 		}
+
+		private IActionResult PaymentSuccess()
+		{
+			return View("PaymentSuccess");
+		}
 	}
 }
