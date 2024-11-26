@@ -73,7 +73,6 @@ namespace ECommerceWebsite.Controllers
         public async Task<IActionResult> ProductEdit(string id, ProductViewModel product, IFormFile Image)
 		{
 
-			//var entity = _serviceManager.ProductService.GetByIdAsync(ObjectId.Parse(id)).Adapt<ProductDTO>();
 			if (string.IsNullOrEmpty(id) || !ObjectId.TryParse(id, out ObjectId objectId))
 			{
 				Console.WriteLine("error");
@@ -88,23 +87,17 @@ namespace ECommerceWebsite.Controllers
 			entity.timestamp = product.timestamp;
 
 
-			/*if (Image != null)
-			{
-				using (var memoryStream = new MemoryStream())
-				{
-					await Image.CopyToAsync(memoryStream);
-					entity.imageUrl = Convert.ToBase64String(memoryStream.ToArray());
-				}
-			}*/
-			if (Image != null)
-			{
-				MemoryStream memoryStream = new MemoryStream();
-				Image.OpenReadStream().CopyTo(memoryStream);
-				entity.imageUrl = Convert.ToBase64String(memoryStream.ToArray());
-			}
+            if (Image != null && Image.Length > 0) // Ensure the image is valid
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await Image.CopyToAsync(memoryStream); // Safely copy image data
+                    entity.imageUrl = Convert.ToBase64String(memoryStream.ToArray());
+                }
+            }
 
-			await _serviceManager.ProductService.UpdateAsync(ObjectId.Parse(id), entity);
-			/*await _serviceManager.ProductService.CreateAsync(entity);*/
+
+            await _serviceManager.ProductService.UpdateAsync(ObjectId.Parse(id), entity);
 			return RedirectToAction("ProductList", "Admin");
         }
 
