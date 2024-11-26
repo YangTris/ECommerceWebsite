@@ -29,7 +29,12 @@ namespace Services
 			}
 			return productEntity.Adapt<ProductDTO>();
 		}
-		public async Task<ProductDTO> CreateAsync(ProductDTO product, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<ProductDTO>> GetByQuery(string query, CancellationToken cancellationToken = default)
+        {
+            var products = await _repositoryManager.ProductRepository.GetByQuery(query, cancellationToken);
+            return products.Adapt<IEnumerable<ProductDTO>>();
+        }
+        public async Task<ProductDTO> CreateAsync(ProductDTO product, CancellationToken cancellationToken = default)
 		{
 			var productEntity = product.Adapt<Product>();
 			_repositoryManager.ProductRepository.Insert(productEntity);

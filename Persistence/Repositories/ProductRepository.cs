@@ -30,7 +30,7 @@ namespace Persistence.Repositories
 
         public async Task<IEnumerable<Product>> GetByQuery(string query, CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Products.Where(x=>x.name.Contains("query")).ToListAsync(cancellationToken);
+            return await _dbContext.Products.Where(x => x.name.Contains(query)).AsNoTracking().ToListAsync(cancellationToken);
         }
 
         public void Insert(Product product)

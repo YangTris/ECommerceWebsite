@@ -31,8 +31,9 @@ namespace ECommerceWebsite.Controllers
 			}
 			else
 			{
-
-			}
+                productList = await _serviceManager.ProductService.GetByQuery(query);
+                viewModel.products = productList;
+            }
 			
 			viewModel.countProduct = productList.Count();
 			if (User.Identity.IsAuthenticated)
