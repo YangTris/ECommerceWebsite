@@ -24,10 +24,18 @@ namespace ECommerceWebsite.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> ProductList()
+		public async Task<IActionResult> ProductList(string query)
 		{
-			var productList = await _serviceManager.ProductService.GetAllAsync();
-			AdminProductViewModel viewModel = new AdminProductViewModel();
+			IEnumerable<ProductDTO> productList = null;
+			if(query == null)
+			{
+                productList = await _serviceManager.ProductService.GetAllAsync();
+            }
+			else
+			{
+				productList = await _serviceManager.ProductService.GetByQuery(query);
+			}
+            AdminProductViewModel viewModel = new AdminProductViewModel();
 			viewModel._products = productList;
 			return View("ProductList",viewModel);
 		}
